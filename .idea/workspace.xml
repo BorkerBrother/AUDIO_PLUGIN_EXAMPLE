@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="AUDIO_PLUGIN_EXAMPLE" targetName="AudioPluginExample_Standalone" />
+      <config projectName="AUDIO_PLUGIN_EXAMPLE" targetName="AudioPluginExample_VST3" />
+      <config projectName="AUDIO_PLUGIN_EXAMPLE" targetName="AudioPluginExample" />
+      <config projectName="AUDIO_PLUGIN_EXAMPLE" targetName="AudioPluginExample_All" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Release" ENABLED="true" CONFIG_NAME="Release" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2022" />
+    <option name="minorVersion" value="3.3" />
+  </component>
+  <component name="ProjectId" id="2SpUMAWVEFXC54ts5mGevS62rHE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "dynamic.analysis.tools.valgrind",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="CMake Application.AudioPluginExample_VST3">
+    <configuration name="Unnamed" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory">
+      <method v="2" />
+    </configuration>
+    <configuration name="AudioPluginExample" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AUDIO_PLUGIN_EXAMPLE" TARGET_NAME="AudioPluginExample" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AudioPluginExample_All" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AUDIO_PLUGIN_EXAMPLE" TARGET_NAME="AudioPluginExample_All" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AudioPluginExample_Standalone" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AUDIO_PLUGIN_EXAMPLE" TARGET_NAME="AudioPluginExample_Standalone" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="AUDIO_PLUGIN_EXAMPLE" RUN_TARGET_NAME="AudioPluginExample_Standalone">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AudioPluginExample_VST3" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AUDIO_PLUGIN_EXAMPLE" TARGET_NAME="AudioPluginExample_VST3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="AUDIO_PLUGIN_EXAMPLE" RUN_TARGET_NAME="AudioPluginExample_Standalone">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.AudioPluginExample" />
+      <item itemvalue="CMake Application.AudioPluginExample_All" />
+      <item itemvalue="CMake Application.AudioPluginExample_Standalone" />
+      <item itemvalue="CMake Application.AudioPluginExample_VST3" />
+      <item itemvalue="CMake Debug.Unnamed" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="" />
+      <created>1689842966237</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689842966237</updated>
+      <workItem from="1689842968100" duration="5000" />
+      <workItem from="1689843110559" duration="209000" />
+      <workItem from="1689843554375" duration="263000" />
+      <workItem from="1689843860633" duration="210000" />
+      <workItem from="1689844118404" duration="149000" />
+      <workItem from="1689844347810" duration="1545000" />
+      <workItem from="1689846332367" duration="666000" />
+      <workItem from="1689924195570" duration="737000" />
+      <workItem from="1689925024913" duration="8897000" />
+      <workItem from="1690098352853" duration="8982000" />
+      <workItem from="1691508849984" duration="1712000" />
+      <workItem from="1691598882762" duration="697000" />
+      <workItem from="1691778006079" duration="162000" />
+      <workItem from="1692473347325" duration="112000" />
+      <workItem from="1693403064863" duration="1470000" />
+      <workItem from="1693923984692" duration="3360000" />
+      <workItem from="1694002999064" duration="4384000" />
+      <workItem from="1695363565713" duration="868000" />
+      <workItem from="1695364876645" duration="611000" />
+      <workItem from="1696771146773" duration="7413000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
