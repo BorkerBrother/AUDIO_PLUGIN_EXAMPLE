@@ -206,6 +206,7 @@ ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)       
     settings.highCutSlope = static_cast<Slope>(apvts.getRawParameterValue("HighCut Slope")->load());
 
     return settings;
+    // Test
 }
 
 void AudioPluginAudioProcessor::updatePeakFilter(const ChainSettings &chainSettings)
