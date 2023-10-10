@@ -89,6 +89,7 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 
+    //
     juce::dsp::ProcessSpec spec;
 
     spec.maximumBlockSize = samplesPerBlock;
@@ -232,7 +233,7 @@ void AudioPluginAudioProcessor::updateCoefficients(Coefficents &old, const Coeff
 void::AudioPluginAudioProcessor::updateLowCutFilters(const ChainSettings &chainSettings)
 {
     // LowPass
-    auto lowCutCoefficion = juce::dsp::FilterDesign<float>::designIIRLowpassHighOrderButterworthMethod(
+    auto lowCutCoefficion = juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(
             chainSettings.lowCutFreq,
             getSampleRate(),
              2*(chainSettings.lowCutSlope +1));
