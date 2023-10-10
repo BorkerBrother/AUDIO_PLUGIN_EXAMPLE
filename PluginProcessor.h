@@ -3,6 +3,11 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_dsp/juce_dsp.h>
 
+// USING FILTER
+using Filter = juce::dsp::IIR::Filter<float>;                                               // Set Up Filter
+using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;                //
+
+
 enum Slope {
     Slope_12,
     Slope_24,
@@ -28,9 +33,11 @@ struct ChainSettings
 
 ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
 
-// USING FILTER
-using Filter = juce::dsp::IIR::Filter<float>;                                               // Set Up Filter
-using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;                //
+// COEFFICIENTS
+using Coefficents = Filter::CoefficientsPtr;
+static void updateCoefficients (Coefficents& old, const Coefficents& replacements);
+
+Coefficents  makePeakFilter(const ChainSettings& chainSettings, double sampleRate);
 
 // MONOCHAIN
 using MonoChain = juce::dsp::ProcessorChain<CutFilter , Filter, CutFilter>;
@@ -84,9 +91,7 @@ private:
     // DESIGN MONO CHAINS
     MonoChain leftChain, rightChain;
 
-    // COEFFICIENTS
-    using Coefficents = Filter::CoefficientsPtr;
-    static void updateCoefficients (Coefficents& old, const Coefficents& replacements);
+
 
     // TEMPLATE UPDATE COEFFICIENTS
     template<int Index, typename ChainType, typename CoefficientType>
