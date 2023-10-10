@@ -28,6 +28,12 @@ struct ChainSettings
 
 ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
 
+// USING FILTER
+using Filter = juce::dsp::IIR::Filter<float>;                                               // Set Up Filter
+using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;                //
+
+// MONOCHAIN
+using MonoChain = juce::dsp::ProcessorChain<CutFilter , Filter, CutFilter>;
 
 //==============================================================================
 class AudioPluginAudioProcessor  : public juce::AudioProcessor
@@ -75,24 +81,12 @@ public:
 
 
 private:
-
-
-
-
-
-    // USING FILTER
-    using Filter = juce::dsp::IIR::Filter<float>;                                               // Set Up Filter
-    using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;                //
-
-    // MONOCHAIN
-    using MonoChain = juce::dsp::ProcessorChain<CutFilter , Filter, CutFilter>;
-
-    // COEFFICIENTS
-    using Coefficents = Filter::CoefficientsPtr;
-
     // DESIGN MONO CHAINS
     MonoChain leftChain, rightChain;
 
+    // COEFFICIENTS
+    using Coefficents = Filter::CoefficientsPtr;
+    static void updateCoefficients (Coefficents& old, const Coefficents& replacements);
 
     // TEMPLATE UPDATE COEFFICIENTS
     template<int Index, typename ChainType, typename CoefficientType>
@@ -139,8 +133,6 @@ private:
     void updateLowCutFilters(const ChainSettings& chainSettings);
     void updateHighCutFilters(const ChainSettings& chainSettings);
     void updatePeakFilter(const ChainSettings& chainSettings);
-
-    static void updateCoefficients (Coefficents& old, const Coefficents& replacements);
 
     void updateFilters();
 
