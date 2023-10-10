@@ -42,6 +42,64 @@ Coefficents  makePeakFilter(const ChainSettings& chainSettings, double sampleRat
 // MONOCHAIN
 using MonoChain = juce::dsp::ProcessorChain<CutFilter , Filter, CutFilter>;
 
+// TEMPLATE UPDATE COEFFICIENTS
+template<int Index, typename ChainType, typename CoefficientType>
+void update(ChainType& chain, const CoefficientType& coefficients)
+{
+    updateCoefficients(chain.template get<Index>().coefficients, coefficients[Index]);
+    chain.template setBypassed<Index>(false);
+}
+
+// TEMPLATE UPDATE CUTFILTER
+template<typename ChainType, typename CoefficientType>
+void updateCutFilter (ChainType& chainType,
+                      const CoefficientType& coefficients,
+                      const Slope& slope)
+{
+
+
+    chainType.template setBypassed<0>(true);
+    chainType.template setBypassed<1>(true);
+    chainType.template setBypassed<2>(true);
+    chainType.template setBypassed<3>(true);
+
+    switch(slope){
+
+        case Slope_48:
+        {
+            update<3>(chainType, coefficients);
+        }
+        case Slope_36:
+        {
+            update<2>(chainType, coefficients);
+        }
+        case Slope_24:
+        {
+            update<1>(chainType, coefficients);
+        }
+        case Slope_12:
+        {
+            update<0>(chainType, coefficients);
+        }
+    }
+}
+
+inline auto makeLowCutFilter(const ChainSettings& chainSettings, double sampleRate)
+{
+    return juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(
+            chainSettings.lowCutFreq,
+            sampleRate,
+            2*(chainSettings.lowCutSlope +1));
+}
+
+inline auto makeHighCutFilter(const ChainSettings& chainSettings, double sampleRate)
+{
+    return juce::dsp::FilterDesign<float>::designIIRLowpassHighOrderButterworthMethod(
+            chainSettings.highCutFreq,
+            sampleRate,
+            2*(chainSettings.highCutSlope +1));
+}
+
 //==============================================================================
 class AudioPluginAudioProcessor  : public juce::AudioProcessor
 {
@@ -90,50 +148,6 @@ public:
 private:
     // DESIGN MONO CHAINS
     MonoChain leftChain, rightChain;
-
-
-
-    // TEMPLATE UPDATE COEFFICIENTS
-    template<int Index, typename ChainType, typename CoefficientType>
-    void update(ChainType& chain, const CoefficientType& coefficients)
-    {
-        updateCoefficients(chain.template get<Index>().coefficients, coefficients[Index]);
-        chain.template setBypassed<Index>(false);
-    }
-
-    // TEMPLATE UPDATE CUTFILTER
-    template<typename ChainType, typename CoefficientType>
-    void updateCutFilter (ChainType& chainType,
-                          const CoefficientType& coefficients,
-                          const Slope& slope)
-    {
-
-
-        chainType.template setBypassed<0>(true);
-        chainType.template setBypassed<1>(true);
-        chainType.template setBypassed<2>(true);
-        chainType.template setBypassed<3>(true);
-
-        switch(slope){
-
-            case Slope_48:
-            {
-                update<3>(chainType, coefficients);
-            }
-            case Slope_36:
-            {
-                update<2>(chainType, coefficients);
-            }
-            case Slope_24:
-            {
-                update<1>(chainType, coefficients);
-            }
-            case Slope_12:
-            {
-                update<0>(chainType, coefficients);
-            }
-        }
-    }
 
     void updateLowCutFilters(const ChainSettings& chainSettings);
     void updateHighCutFilters(const ChainSettings& chainSettings);
