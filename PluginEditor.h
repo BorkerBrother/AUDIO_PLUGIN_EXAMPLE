@@ -2,7 +2,7 @@
 
 #include "PluginProcessor.h"
 
-
+// ROTARY SLIDER
 struct CustomRotarySlider : juce::Slider
 {
     CustomRotarySlider() : juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag,
@@ -12,6 +12,9 @@ struct CustomRotarySlider : juce::Slider
     }
 };
 
+//==============================================================================
+
+// ResponseCurveComponent Object
 struct ResponseCurveComponent: juce::Component,
         juce::AudioProcessorParameter::Listener,
         juce::Timer
@@ -20,19 +23,19 @@ struct ResponseCurveComponent: juce::Component,
     ~ResponseCurveComponent();
 
     void parameterValueChanged (int parameterIndex, float newValue) override ;
-
-
     void parameterGestureChanged (int parameterIndex, bool gestureIsStarting) override { };
-
     void timerCallback() override;
-
     void paint(juce::Graphics& g) override;
-
-
 
 private:
 
     AudioPluginAudioProcessor& processorRef;
+    /*
+    Objects of atomic types are the only C++ objects that are free from data races;
+     that is, if one thread writes to an atomic object while another thread reads from it, the behavior is well-defined.
+    In addition, accesses to atomic objects may establish inter-thread synchronization
+     and order non-atomic memory accesses as specified by std::memory_order.
+*/
     juce::Atomic<bool> parametersChanged {false};
 
     MonoChain monoChain;
@@ -53,8 +56,7 @@ public:
 
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
+    //
     AudioPluginAudioProcessor& processorRef;
 
     // Create ROTARY SLIDER
@@ -66,11 +68,9 @@ private:
     lowCutSlopeSlider,
     highCutSlopeSlider;
 
-
     ResponseCurveComponent responseCurveComponent;
 
     // SLIDER ATTACHMENT
-
     using APVTS = juce::AudioProcessorValueTreeState;
     using Attachment = APVTS::SliderAttachment;
 

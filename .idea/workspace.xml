@@ -110,6 +110,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="CMake Application.AudioPluginExample" />
       <item itemvalue="CMake Application.AudioPluginExample_All" />
@@ -147,7 +152,7 @@
       <workItem from="1695364876645" duration="611000" />
       <workItem from="1696771146773" duration="8151000" />
       <workItem from="1696930661753" duration="11652000" />
-      <workItem from="1696951375629" duration="1377000" />
+      <workItem from="1696951375629" duration="3404000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -212,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696947714984</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Draw Cutfilter inside bounds">
+      <created>1696953010451</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1696953010451</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +240,8 @@
     <MESSAGE value="Refactored PeakCoefficients" />
     <MESSAGE value="Draw Peak" />
     <MESSAGE value="Draw Cutfilter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Draw Cutfilter" />
+    <MESSAGE value="Draw Cutfilter inside bounds" />
+    <option name="LAST_COMMIT_MESSAGE" value="Draw Cutfilter inside bounds" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

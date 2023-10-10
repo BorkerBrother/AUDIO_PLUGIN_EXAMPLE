@@ -12,6 +12,7 @@ ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor& p) : p
     startTimerHz(60);
 }
 
+
 ResponseCurveComponent::~ResponseCurveComponent()
 {
     const auto& params = processorRef.getParameters();
@@ -21,11 +22,20 @@ ResponseCurveComponent::~ResponseCurveComponent()
     }
 }
 
+
 void ResponseCurveComponent::parameterValueChanged(int parameterIndex, float newValue) {
 
     parametersChanged.set(true);
 }
 
+
+/*A Timer's timerCallback() method will be repeatedly called at a given interval. When you create a Timer object,
+ it will do nothing until the startTimer() method is called, which will cause the message thread to start making
+ callbacks at the specified interval, until stopTimer() is called or the object is deleted.
+The time interval isn't guaranteed to be precise to any more than maybe 10-20ms, and the intervals may end up being much
+ longer than requested if the system is busy. Because the callbacks are made by the main message thread, anything that
+ blocks the message queue for a period of time will also prevent any timers from running until it can carry on.
+ */
 
 void ResponseCurveComponent::timerCallback() {
 
@@ -42,41 +52,44 @@ void ResponseCurveComponent::timerCallback() {
         updateCutFilter(monoChain.get<ChainPositions::LowCut>(), lowCutCoefficients, chainSettings.lowCutSlope);
         updateCutFilter(monoChain.get<ChainPositions::HighCut>(), highCutCoefficients, chainSettings.highCutSlope);
 
+        // Repaint
         repaint();
     }
 }
 
+
 void ResponseCurveComponent::paint (juce::Graphics& g) {
 
     using namespace juce;
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
 
+    // Background
     g.fillAll(Colours::black);
 
+    // GET ResponseArea PIXEL
     auto responseArea = getLocalBounds();
-    //auto responseArea = bounds.removeFromTop(bounds.getHeight() * 0.33);
-
     auto w = responseArea.getWidth();
 
     auto& lowCut = monoChain.get<ChainPositions::LowCut>();
     auto& peak = monoChain.get<ChainPositions::Peak>();
     auto& highCut = monoChain.get<ChainPositions::HighCut>();
 
+    // Get sample Rate
     auto sampleRate = processorRef.getSampleRate();
-
 
     // VECTOR FOR DRAWING
     std::vector<double> mags;
 
     mags.resize(w);
 
+    // Paint for every Pixel
     for (int i = 0; i < w; i++)
     {
         double mag = 1.f;
         auto freq = mapToLog10(double(i) / double(w), 20.0, 20000.0);
+
+
         if (! monoChain.isBypassed<ChainPositions::Peak>() )
             mag *= peak.coefficients->getMagnitudeForFrequency(freq,sampleRate);
-
         if (! lowCut.isBypassed<0>() )
             mag *= lowCut.get<0>().coefficients->getMagnitudeForFrequency(freq,sampleRate);
         if (! lowCut.isBypassed<1>() )
@@ -99,16 +112,27 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         mags[i] = Decibels::gainToDecibels(mag);
     }
 
+    // BUILD PATH
+
+    /*
+    To use a path, you can create an empty one, then add lines and curves to it
+    to create shapes, then it can be rendered by a Graphics context or used
+    for geometric operations.
+     */
     Path responseCurve;
 
     const double outputMin = responseArea.getBottom();
     const double outputMax = responseArea.getY();
+
     auto map = [outputMin, outputMax](double input)
     {
+        /* jmap - Remaps a value from a source range to a target range. */
         return jmap(input, -24.0, 24.0 , outputMin,outputMax);
     };
 
+    // Start new Subpath with Magnetude (
     responseCurve.startNewSubPath(responseArea.getX(), map(mags.front()));
+
 
     for ( size_t i = 1; i < mags.size(); i++)
     {
@@ -119,10 +143,12 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     g.drawRoundedRectangle(responseArea.toFloat(),4.f,1.f);
 
     g.setColour(Colours::white);
+    // Paint Path
     g.strokePath(responseCurve,PathStrokeType(2.f));
 
 
 }
+
 
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
