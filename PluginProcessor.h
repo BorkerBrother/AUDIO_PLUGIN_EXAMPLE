@@ -35,7 +35,7 @@ ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
 
 // COEFFICIENTS
 using Coefficents = Filter::CoefficientsPtr;
-static void updateCoefficients (Coefficents& old, const Coefficents& replacements);
+void updateCoefficients (Coefficents& old, const Coefficents& replacements);
 
 Coefficents  makePeakFilter(const ChainSettings& chainSettings, double sampleRate);
 

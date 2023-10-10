@@ -20,14 +20,24 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
         addAndMakeVisible(comp);
     }
 
-    //juce::ignoreUnused (processorRef);
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
+    const auto& params = processorRef.getParameters();
+    for ( auto param : params )
+    {
+        param->addListener(this);
+    }
+
+    startTimerHz(60);
+
     setSize (600, 400);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 {
+    const auto& params = processorRef.getParameters();
+    for ( auto param : params )
+    {
+        param->removeListener(this);
+    }
 }
 
 //==============================================================================
@@ -139,7 +149,11 @@ void AudioPluginAudioProcessorEditor::timerCallback() {
     if ( parametersChanged.compareAndSetBool(false,true) )
     {
         // update monochain
+        auto chainSettings = getChainSettings(processorRef.apvts);
+        auto peakCoefficients = makePeakFilter(chainSettings, processorRef.getSampleRate());
+        updateCoefficients(monoChain.get<ChainPositions::Peak>().coefficients, peakCoefficients );
 
+        repaint();
         // signal a repaint
     }
 }
