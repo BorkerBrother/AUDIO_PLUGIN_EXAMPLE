@@ -27,6 +27,7 @@ private:
     // access the processor object that created it.
     AudioPluginAudioProcessor& processorRef;
 
+    // Create ROTARY SLIDER
     CustomRotarySlider peakFreqSlider,
     peakGainSlider,
     peakQualitySlider,
@@ -36,6 +37,21 @@ private:
     highCutSlopeSlider;
 
 
+    // SLIDER ATTACHMENT
+
+    using APVTS = juce::AudioProcessorValueTreeState;
+    using Attachment = APVTS::SliderAttachment;
+
+    Attachment peakFreqSliderAttachment,
+            peakGainSliderAttachment,
+            peakQualitySliderAttachment,
+            lowCutFreqSliderAttachment,
+            highCutFreqSliderAttachment,
+            lowCutSlopeSliderAttachment,
+            highCutSlopeSliderAttachment;
+
+
+    // VECTOR FOR SLIDERS
     std::vector<juce::Component*> getComps();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)

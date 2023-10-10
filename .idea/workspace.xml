@@ -26,7 +26,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PluginProcessor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PluginEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PluginEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/PluginEditor.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +152,7 @@
       <workItem from="1695363565713" duration="868000" />
       <workItem from="1695364876645" duration="611000" />
       <workItem from="1696771146773" duration="8151000" />
-      <workItem from="1696930661753" duration="3844000" />
+      <workItem from="1696930661753" duration="7325000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -166,7 +168,21 @@
       <option name="project" value="LOCAL" />
       <updated>1696936527283</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Safe State Information">
+      <created>1696936879413</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696936879413</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added Sliders to GUI">
+      <created>1696939471267</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696939471267</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,7 +191,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="Fixed Bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Bugs" />
+    <MESSAGE value="Safe State Information" />
+    <MESSAGE value="Added Sliders to GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Sliders to GUI" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -3,7 +3,16 @@
 
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
-    : AudioProcessorEditor (&p), processorRef (p)
+    : AudioProcessorEditor (&p), processorRef (p),
+
+      peakFreqSliderAttachment(processorRef.apvts, "Peak Freq", peakFreqSlider),
+      peakGainSliderAttachment(processorRef.apvts, "Peak Gain", peakGainSlider),
+      peakQualitySliderAttachment(processorRef.apvts, "Peak Quality", peakQualitySlider),
+      lowCutFreqSliderAttachment(processorRef.apvts, "LowCut Freq", lowCutFreqSlider),
+      lowCutSlopeSliderAttachment(processorRef.apvts, "HighCut Freq", lowCutSlopeSlider),
+      highCutFreqSliderAttachment(processorRef.apvts, "LowCut Slope", highCutFreqSlider),
+      highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSlider)
+
 {
 
     for (auto* comp : getComps())
