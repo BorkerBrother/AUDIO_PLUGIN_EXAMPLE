@@ -27,8 +27,7 @@
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PluginEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PluginProcessor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginProcessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/PluginProcessor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PluginEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/PluginEditor.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +41,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -88,11 +87,6 @@
   }
 }</component>
   <component name="RunManager" selected="CMake Application.AudioPluginExample_VST3">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Unnamed" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory">
       <method v="2" />
     </configuration>
@@ -152,7 +146,8 @@
       <workItem from="1695363565713" duration="868000" />
       <workItem from="1695364876645" duration="611000" />
       <workItem from="1696771146773" duration="8151000" />
-      <workItem from="1696930661753" duration="11571000" />
+      <workItem from="1696930661753" duration="11652000" />
+      <workItem from="1696951375629" duration="1377000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -210,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696947162411</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Draw Cutfilter">
+      <created>1696947714984</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1696947714984</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +227,8 @@
     <MESSAGE value="Give Editor his own MonoChain" />
     <MESSAGE value="Refactored PeakCoefficients" />
     <MESSAGE value="Draw Peak" />
-    <option name="LAST_COMMIT_MESSAGE" value="Draw Peak" />
+    <MESSAGE value="Draw Cutfilter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Draw Cutfilter" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
