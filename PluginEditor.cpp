@@ -63,7 +63,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     using namespace juce;
 
     // Background
-    g.fillAll(Colours::black);
+    //g.fillAll(Colours::black);
 
     // GET ResponseArea PIXEL
     auto responseArea = getLocalBounds();
@@ -87,9 +87,11 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         double mag = 1.f;
         auto freq = mapToLog10(double(i) / double(w), 20.0, 20000.0);
 
-
+        //Peak
         if (! monoChain.isBypassed<ChainPositions::Peak>() )
             mag *= peak.coefficients->getMagnitudeForFrequency(freq,sampleRate);
+
+        //Lowcut
         if (! lowCut.isBypassed<0>() )
             mag *= lowCut.get<0>().coefficients->getMagnitudeForFrequency(freq,sampleRate);
         if (! lowCut.isBypassed<1>() )
@@ -99,7 +101,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         if (! lowCut.isBypassed<3>() )
             mag *= lowCut.get<3>().coefficients->getMagnitudeForFrequency(freq,sampleRate);
 
-
+        //HighCut
         if (! highCut.isBypassed<0>() )
             mag *= highCut.get<0>().coefficients->getMagnitudeForFrequency(freq,sampleRate);
         if (! highCut.isBypassed<1>() )
@@ -112,6 +114,10 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         mags[i] = Decibels::gainToDecibels(mag);
     }
 
+
+
+
+
     // BUILD PATH
 
     /*
@@ -119,7 +125,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     to create shapes, then it can be rendered by a Graphics context or used
     for geometric operations.
      */
-    Path responseCurve;
+    Path responseCurve, peakPoint;
 
     const double outputMin = responseArea.getBottom();
     const double outputMax = responseArea.getY();
@@ -139,8 +145,17 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         responseCurve.lineTo(responseArea.getX()+ i, map(mags[i]));
     }
 
+    // TODO: Get Cutoff freq from peak and draw it
+
     g.setColour(Colours::orange);
+    juce::Rectangle<float> pointArea ({});
+    pointArea.setBounds(10,10,10,10);
+    g.fillRect (pointArea);
+
+
+    //g.setColour(Colours::orange);
     g.drawRoundedRectangle(responseArea.toFloat(),4.f,1.f);
+
 
     g.setColour(Colours::white);
     // Paint Path
@@ -184,6 +199,8 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g) {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
 
     g.fillAll(Colours::black);
+
+
 
 
 
