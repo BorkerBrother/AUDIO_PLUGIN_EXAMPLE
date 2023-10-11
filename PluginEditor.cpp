@@ -85,10 +85,10 @@ void RotarySliderWithLabels::paint(juce::Graphics &g)
 
     auto sliderBounds = getSliderBounds();
 
-    g.setColour(Colours::red);
-    g.drawRect(getLocalBounds());
-    g.setColour(Colours::yellow);
-    g.drawRect(sliderBounds);
+    //g.setColour(Colours::red);
+    //g.drawRect(getLocalBounds());
+    //g.setColour(Colours::yellow);
+    //g.drawRect(sliderBounds);
 
 
 
@@ -126,7 +126,41 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
 }
 
 juce::String RotarySliderWithLabels::getDisplayString() const {
-    return juce::String(getValue());
+
+    if ( auto* choiceParam = dynamic_cast<juce::AudioParameterChoice*>(param) )
+        return choiceParam->getCurrentChoiceName();
+
+    juce::String str;
+    bool addK = false;
+
+    if( auto* floatParam = dynamic_cast<juce::AudioParameterFloat*>(param) )
+    {
+        float val = getValue();
+
+        if( val > 999.f )
+        {
+            val /= 1000.f;
+            addK = true;
+        }
+
+        str = juce::String(val,(addK ? 2: 0));
+    }
+    else
+    {
+        jassertfalse;
+    }
+
+    if ( suffix.isNotEmpty() )
+    {
+        str << " ";
+        if (addK)
+            str << "k";
+
+        str << suffix;
+    }
+
+    return str;
+
 }
 
 //==============================================================================
@@ -296,8 +330,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
       peakGainSlider(*processorRef.apvts.getParameter( "Peak Gain"), "db"),
       peakQualitySlider(*processorRef.apvts.getParameter("Peak Quality"), "Q"),
       lowCutFreqSlider(*processorRef.apvts.getParameter( "LowCut Freq"), "Hz"),
-      highCutFreqSlider(*processorRef.apvts.getParameter( "HighCut Freq"), "dB/Oct"),
-      lowCutSlopeSlider(*processorRef.apvts.getParameter( "LowCut Slope"), "Hz"),
+      highCutFreqSlider(*processorRef.apvts.getParameter( "HighCut Freq"), "Hz"),
+      lowCutSlopeSlider(*processorRef.apvts.getParameter( "LowCut Slope"), "dB/Oct"),
       highCutSlopeSlider(*processorRef.apvts.getParameter( "HighCut Slope"), "dB/Oct"),
 
       responseCurveComponent(processorRef),
