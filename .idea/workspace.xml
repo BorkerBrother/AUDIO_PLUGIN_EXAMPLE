@@ -25,6 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PluginEditor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +147,7 @@
       <workItem from="1696771146773" duration="8151000" />
       <workItem from="1696930661753" duration="11652000" />
       <workItem from="1696951375629" duration="9599000" />
-      <workItem from="1696964771425" duration="16314000" />
+      <workItem from="1696964771425" duration="16964000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -253,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697033800712</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Sliders are now circles">
+      <created>1697034061253</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1697034061253</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +283,8 @@
     <MESSAGE value="Implemented Skeleton for custom Slider visuals" />
     <MESSAGE value="Draw Buttons : Issue - draw Angle Lines" />
     <MESSAGE value="Added basic slider Visuals - Fixed Issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added basic slider Visuals - Fixed Issue" />
+    <MESSAGE value="Sliders are now circles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sliders are now circles" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
