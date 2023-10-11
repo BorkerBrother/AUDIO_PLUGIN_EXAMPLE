@@ -41,8 +41,9 @@ void ResponseCurveComponent::timerCallback() {
 
     if ( parametersChanged.compareAndSetBool(false,true) )
     {
-        // update monochain
+
         auto chainSettings = getChainSettings(processorRef.apvts);
+
         auto peakCoefficients = makePeakFilter(chainSettings, processorRef.getSampleRate());
         updateCoefficients(monoChain.get<ChainPositions::Peak>().coefficients, peakCoefficients );
 
@@ -61,9 +62,6 @@ void ResponseCurveComponent::timerCallback() {
 void ResponseCurveComponent::paint (juce::Graphics& g) {
 
     using namespace juce;
-
-    // Background
-    //g.fillAll(Colours::black);
 
     // GET ResponseArea PIXEL
     auto responseArea = getLocalBounds();
@@ -114,10 +112,6 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         mags[i] = Decibels::gainToDecibels(mag);
     }
 
-
-
-
-
     // BUILD PATH
 
     /*
@@ -125,7 +119,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     to create shapes, then it can be rendered by a Graphics context or used
     for geometric operations.
      */
-    Path responseCurve, peakPoint;
+    Path responseCurve;
 
     const double outputMin = responseArea.getBottom();
     const double outputMax = responseArea.getY();
@@ -153,6 +147,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     g.fillRect (pointArea);
 
 
+
     //g.setColour(Colours::orange);
     g.drawRoundedRectangle(responseArea.toFloat(),4.f,1.f);
 
@@ -161,7 +156,6 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     // Paint Path
     g.strokePath(responseCurve,PathStrokeType(2.f));
 
-
 }
 
 
@@ -169,7 +163,16 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
     : AudioProcessorEditor (&p), processorRef (p),
 
+      peakFreqSlider(*processorRef.apvts.getParameter("Peak Freq"), "Hz"),
+      peakGainSlider(*processorRef.apvts.getParameter( "Peak Gain"), "db"),
+      peakQualitySlider(*processorRef.apvts.getParameter("Peak Quality"), "Q"),
+      lowCutFreqSlider(*processorRef.apvts.getParameter( "LowCut Freq"), "Hz"),
+      lowCutSlopeSlider(*processorRef.apvts.getParameter( "HighCut Freq"), "Hz"),
+      highCutFreqSlider(*processorRef.apvts.getParameter( "LowCut Slope"), "dB/Oct"),
+      highCutSlopeSlider(*processorRef.apvts.getParameter( "HighCut Slope"), "dB/Oct"),
+
       responseCurveComponent(processorRef),
+
       peakFreqSliderAttachment(processorRef.apvts, "Peak Freq", peakFreqSlider),
       peakGainSliderAttachment(processorRef.apvts, "Peak Gain", peakGainSlider),
       peakQualitySliderAttachment(processorRef.apvts, "Peak Quality", peakQualitySlider),
@@ -185,7 +188,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
         addAndMakeVisible(comp);
     }
 
-    setSize (600, 400);
+    setSize (800, 500);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
@@ -199,10 +202,6 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g) {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
 
     g.fillAll(Colours::black);
-
-
-
-
 
 }
 
