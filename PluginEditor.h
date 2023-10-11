@@ -30,7 +30,7 @@ struct RotarySliderWithLabels : juce::Slider
         setLookAndFeel(nullptr);
     }
 
-    void paint(juce::Graphics& g) override ;
+    void paint(juce::Graphics& g) override;
     juce::Rectangle<int> getSliderBounds() const;
     int getTextHeight() const { return 14; }
     juce::String getDisplayString() const;
@@ -40,6 +40,7 @@ private:
     LookAndFeel lnf;
     juce::RangedAudioParameter* param;
     juce::String suffix;
+
 };
 
 //==============================================================================
@@ -50,10 +51,10 @@ struct ResponseCurveComponent: juce::Component,
         juce::Timer
 {
     ResponseCurveComponent(AudioPluginAudioProcessor&);
-    ~ResponseCurveComponent();
+    ~ResponseCurveComponent() override;
 
     void parameterValueChanged (int parameterIndex, float newValue) override ;
-    void parameterGestureChanged (int parameterIndex, bool gestureIsStarting) override { };
+    void parameterGestureChanged (int parameterIndex, bool gestureIsStarting) override { }
     void timerCallback() override;
     void paint(juce::Graphics& g) override;
 
@@ -90,7 +91,8 @@ private:
     AudioPluginAudioProcessor& processorRef;
 
     // Create ROTARY SLIDER
-    RotarySliderWithLabels peakFreqSlider,
+    RotarySliderWithLabels
+    peakFreqSlider,
     peakGainSlider,
     peakQualitySlider,
     lowCutFreqSlider,

@@ -9,7 +9,7 @@ void LookAndFeel::drawRotarySlider(juce::Graphics &g,
                                    float sliderPosProportional,
                                    float rotaryStartAngle,
                                    float rotaryEndAngle,
-                                   juce::Slider &slider)
+                                   juce::Slider & slider)
 {
     using namespace juce;
 
@@ -21,19 +21,21 @@ void LookAndFeel::drawRotarySlider(juce::Graphics &g,
     g.setColour(Colours::orange);
     g.drawEllipse(bounds,1.f);
 
-    auto center = bounds.getCentre();
 
+    auto center = bounds.getCentre();
     Path p;
 
     Rectangle<float> r;
-    r.setLeft(center.getX()-2);
-    r.setRight(center.getX()+2);
+    r.setLeft(center.getX() - 2);
+    r.setRight(center.getX() + 2);
     r.setTop(bounds.getY());
-    r.setBottom(bounds.getY());
+    r.setBottom(center.getY());
 
     p.addRectangle(r);
 
     jassert(rotaryStartAngle < rotaryEndAngle);
+
+    juce::Logger::outputDebugString("Angle: " + juce::String(rotaryStartAngle));
 
     auto sliderAngRad = jmap(sliderPosProportional,
                                     0.f,
@@ -46,6 +48,7 @@ void LookAndFeel::drawRotarySlider(juce::Graphics &g,
                         center.getX(),
                         center.getY()));
 
+    g.setColour(Colours::white);
     g.fillPath(p);
 
 }
@@ -62,6 +65,11 @@ void RotarySliderWithLabels::paint(juce::Graphics &g)
 
     auto sliderBounds = getSliderBounds();
 
+    /*g.setColour(Colours::red);
+    g.drawRect(getLocalBounds());
+    g.setColour(Colours::yellow);
+    g.drawRect(sliderBounds);
+*/
     getLookAndFeel().drawRotarySlider(g,
                                       sliderBounds.getX(),
                                       sliderBounds.getY(),
@@ -76,6 +84,7 @@ void RotarySliderWithLabels::paint(juce::Graphics &g)
                                       endAng,
                                       *this);
 }
+
 
 juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
 {
@@ -250,8 +259,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
       peakGainSlider(*processorRef.apvts.getParameter( "Peak Gain"), "db"),
       peakQualitySlider(*processorRef.apvts.getParameter("Peak Quality"), "Q"),
       lowCutFreqSlider(*processorRef.apvts.getParameter( "LowCut Freq"), "Hz"),
-      lowCutSlopeSlider(*processorRef.apvts.getParameter( "HighCut Freq"), "Hz"),
-      highCutFreqSlider(*processorRef.apvts.getParameter( "LowCut Slope"), "dB/Oct"),
+      highCutFreqSlider(*processorRef.apvts.getParameter( "HighCut Freq"), "dB/Oct"),
+      lowCutSlopeSlider(*processorRef.apvts.getParameter( "LowCut Slope"), "Hz"),
       highCutSlopeSlider(*processorRef.apvts.getParameter( "HighCut Slope"), "dB/Oct"),
 
       responseCurveComponent(processorRef),
@@ -260,8 +269,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
       peakGainSliderAttachment(processorRef.apvts, "Peak Gain", peakGainSlider),
       peakQualitySliderAttachment(processorRef.apvts, "Peak Quality", peakQualitySlider),
       lowCutFreqSliderAttachment(processorRef.apvts, "LowCut Freq", lowCutFreqSlider),
-      lowCutSlopeSliderAttachment(processorRef.apvts, "HighCut Freq", lowCutSlopeSlider),
-      highCutFreqSliderAttachment(processorRef.apvts, "LowCut Slope", highCutFreqSlider),
+      highCutFreqSliderAttachment(processorRef.apvts, "HighCut Freq", highCutFreqSlider),
+      lowCutSlopeSliderAttachment(processorRef.apvts, "LowCut Slope", lowCutSlopeSlider),
       highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSlider)
 
 {
