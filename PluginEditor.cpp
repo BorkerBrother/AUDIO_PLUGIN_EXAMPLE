@@ -463,18 +463,48 @@ void ResponseCurveComponent::resized()
 
     }
 
+    // DRAW DB LINES
+
+    for ( auto gDb : gain) {
+        auto y = jmap(gDb,
+                      -24.f,
+                      24.f,
+                      float(getHeight()),
+                      0.f);
+
+        String str;
+        if(gDb < 0)
+            str << "+";
+        str <<gDb;
+
+        auto textWidth = g.getCurrentFont().getStringWidth(str);
+
+        Rectangle<int> r;
+        r.setSize(textWidth, fontHeight);
+        r.setX(getWidth() - textWidth);
+        r.setCentre(r.getCentreX(), y);
+
+        g.setColour(gDb == 0.f ? (Colours::orange) : Colours::lightgrey);
+
+        g.drawFittedText(str,r,juce::Justification::centred,1);
+
+
+    }
+
+
+
 }
 
 juce::Rectangle<int> ResponseCurveComponent::getRenderArea()
 {
     auto bounds = getLocalBounds();
 
-    bounds.reduce(5, 8);
+    bounds.reduce(10, 8);
 
     bounds.removeFromTop(12);
     bounds.removeFromBottom(2);
-    bounds.removeFromLeft(5);
-    bounds.removeFromRight(5);
+    bounds.removeFromLeft(20);
+    bounds.removeFromRight(20);
 
     return bounds;
 }
