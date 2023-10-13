@@ -376,9 +376,9 @@ void ResponseCurveComponent::resized()
 
     Array<float> freqs
     {
-        20,30,40,50,100,
-        200,300,400,500,1000,
-        2000,3000,4000,5000,10000,
+        20, 30, /*40,*/ 50,100,
+        200,  300,/*400,*/ 500,1000,
+        2000, 3000, /*,4000 */ 5000,10000,
         20000
     };
 
@@ -393,7 +393,7 @@ void ResponseCurveComponent::resized()
     Array<float> xs;
     for ( auto f : freqs )
     {
-        auto normX = mapFromLog10(f,10.f,20000.f);
+        auto normX = mapFromLog10(f,20.f,20000.f);
         xs.add(left + width * normX);
     }
 
@@ -469,12 +469,12 @@ juce::Rectangle<int> ResponseCurveComponent::getRenderArea()
 {
     auto bounds = getLocalBounds();
 
-    bounds.reduce(10, 8);
+    bounds.reduce(5, 8);
 
     bounds.removeFromTop(12);
     bounds.removeFromBottom(2);
-    bounds.removeFromLeft(20);
-    bounds.removeFromRight(20);
+    bounds.removeFromLeft(5);
+    bounds.removeFromRight(5);
 
     return bounds;
 }
