@@ -86,13 +86,6 @@ void RotarySliderWithLabels::paint(juce::Graphics &g)
 
     auto sliderBounds = getSliderBounds();
 
-    //g.setColour(Colours::red);
-    //g.drawRect(getLocalBounds());
-    //g.setColour(Colours::yellow);
-    //g.drawRect(sliderBounds);
-
-
-
     getLookAndFeel().drawRotarySlider(g,
                                       sliderBounds.getX(),
                                       sliderBounds.getY(),
@@ -271,7 +264,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
     g.drawImage(background,getLocalBounds().toFloat());
     // GET ResponseArea PIXEL
-    auto responseArea =  getAnalysisArea(); //getRenderArea();
+    auto responseArea =  getAnalysisArea();
 
     auto w = responseArea.getWidth();
 
@@ -354,9 +347,6 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     pointArea.setBounds(10,10,10,10);
     g.fillRect (pointArea);
 
-
-
-    //g.setColour(Colours::orange);
     g.drawRoundedRectangle(getRenderArea().toFloat(),4.f,1.f);
 
 
@@ -487,6 +477,17 @@ void ResponseCurveComponent::resized()
         r.setCentre(r.getCentreX(), y);
 
         g.setColour(gDb == 0.f ? (Colours::orange) : Colours::lightgrey);
+
+        g.drawFittedText(str,r,juce::Justification::centred,1);
+
+        str.clear();
+
+        str << (gDb -24.f);
+
+        r.setX(1);
+        textWidth = g.getCurrentFont().getStringWidth(str);
+        r.setSize(textWidth, fontHeight);
+        g.setColour(Colours::lightgrey);
 
         g.drawFittedText(str,r,juce::Justification::centred,1);
 

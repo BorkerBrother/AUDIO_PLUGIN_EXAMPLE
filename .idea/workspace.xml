@@ -25,7 +25,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PluginEditor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +149,7 @@
       <workItem from="1696964771425" duration="20761000" />
       <workItem from="1697042168915" duration="5807000" />
       <workItem from="1697194858835" duration="1776000" />
-      <workItem from="1697356309636" duration="2558000" />
+      <workItem from="1697356309636" duration="2960000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -313,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697196034106</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Fixed Horizontal Line Issue and + // - in String">
+      <created>1697359045965</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1697359045965</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +349,8 @@
     <MESSAGE value="Draw comments on Grid - Issue should start with line 1" />
     <MESSAGE value="Added Frequenzy Labels - solved Issue" />
     <MESSAGE value="Added dB Labels - Issue Draw in right area" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added dB Labels - Issue Draw in right area" />
+    <MESSAGE value="Fixed Horizontal Line Issue and + // - in String" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Horizontal Line Issue and + // - in String" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
