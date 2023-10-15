@@ -399,6 +399,7 @@ void ResponseCurveComponent::resized()
 
     g.setColour(Colours::dimgrey);
 
+    // DRAW Vertical Lines
     for ( auto x : xs)
     {
         g.drawVerticalLine(x,top, bottom);
@@ -410,21 +411,21 @@ void ResponseCurveComponent::resized()
         -24, -12, 0, 12, 24
     };
 
+
+    // DRAW Horizontal Lines
     for ( auto gDb : gain)
     {
         auto y = jmap(gDb,
                       -24.f,
                       24.f,
-                      float(getHeight()),
-                      0.f);
+                      float(bottom),
+                      float(top));
 
         g.setColour(gDb == 0.f ? (Colours::orange) : Colours::darkgrey);
 
         g.drawHorizontalLine(y,left,right);
 
     }
-
-    //g.drawRect(getAnalysisArea());
 
     g.setColour(Colours::white);
 
@@ -463,19 +464,20 @@ void ResponseCurveComponent::resized()
 
     }
 
-    // DRAW DB LINES
+    // DRAW DB LINES String
 
     for ( auto gDb : gain) {
         auto y = jmap(gDb,
                       -24.f,
                       24.f,
-                      float(getHeight()),
-                      0.f);
+                      float(bottom),
+                      float(top));
 
         String str;
-        if(gDb < 0)
+        if(gDb > 0)
             str << "+";
-        str <<gDb;
+
+        str << gDb;
 
         auto textWidth = g.getCurrentFont().getStringWidth(str);
 
@@ -499,7 +501,7 @@ juce::Rectangle<int> ResponseCurveComponent::getRenderArea()
 {
     auto bounds = getLocalBounds();
 
-    bounds.reduce(10, 8);
+    bounds.reduce(20, 8);
 
     bounds.removeFromTop(12);
     bounds.removeFromBottom(2);

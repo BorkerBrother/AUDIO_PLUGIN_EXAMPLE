@@ -149,7 +149,8 @@
       <workItem from="1696951375629" duration="9599000" />
       <workItem from="1696964771425" duration="20761000" />
       <workItem from="1697042168915" duration="5807000" />
-      <workItem from="1697194858835" duration="945000" />
+      <workItem from="1697194858835" duration="1776000" />
+      <workItem from="1697356309636" duration="2558000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -305,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697195195143</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Added dB Labels - Issue Draw in right area">
+      <created>1697196034106</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1697196034106</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +342,8 @@
     <MESSAGE value="Added Grid Lines" />
     <MESSAGE value="Draw comments on Grid - Issue should start with line 1" />
     <MESSAGE value="Added Frequenzy Labels - solved Issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Frequenzy Labels - solved Issue" />
+    <MESSAGE value="Added dB Labels - Issue Draw in right area" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added dB Labels - Issue Draw in right area" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
