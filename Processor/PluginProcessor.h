@@ -2,103 +2,13 @@
 
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_dsp/juce_dsp.h>
-
-// USING FILTER
-using Filter = juce::dsp::IIR::Filter<float>;                                               // Set Up Filter
-using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;                //
-
-
-enum Slope {
-    Slope_12,
-    Slope_24,
-    Slope_36,
-    Slope_48
-};
-
-enum ChainPositions
-{
-    LowCut,
-    Peak,
-    HighCut
-};
-
-struct ChainSettings
-{
-    float peakFreq{0}, peakGainInDecibels{0}, peakQuality{1.f};
-    float lowCutFreq {0}, highCutFreq{0};
-
-    Slope lowCutSlope {Slope::Slope_12}, highCutSlope {Slope::Slope_12};
-
-};
-
-ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
-
-// COEFFICIENTS
-using Coefficents = Filter::CoefficientsPtr;
-void updateCoefficients (Coefficents& old, const Coefficents& replacements);
-
-Coefficents  makePeakFilter(const ChainSettings& chainSettings, double sampleRate);
-
-// MONOCHAIN
-using MonoChain = juce::dsp::ProcessorChain<CutFilter , Filter, CutFilter>;
-
-// TEMPLATE UPDATE COEFFICIENTS
-template<int Index, typename ChainType, typename CoefficientType>
-void update(ChainType& chain, const CoefficientType& coefficients)
-{
-    updateCoefficients(chain.template get<Index>().coefficients, coefficients[Index]);
-    chain.template setBypassed<Index>(false);
-}
-
-// TEMPLATE UPDATE CUTFILTER
-template<typename ChainType, typename CoefficientType>
-void updateCutFilter (ChainType& chainType,
-                      const CoefficientType& coefficients,
-                      const Slope& slope)
-{
+#include "PeakFilter.h"
+#include "CutFilter.h"
+#include "Setting.h"
+#include "TemplateCoefficients.h"
 
 
-    chainType.template setBypassed<0>(true);
-    chainType.template setBypassed<1>(true);
-    chainType.template setBypassed<2>(true);
-    chainType.template setBypassed<3>(true);
 
-    switch(slope){
-
-        case Slope_48:
-        {
-            update<3>(chainType, coefficients);
-        }
-        case Slope_36:
-        {
-            update<2>(chainType, coefficients);
-        }
-        case Slope_24:
-        {
-            update<1>(chainType, coefficients);
-        }
-        case Slope_12:
-        {
-            update<0>(chainType, coefficients);
-        }
-    }
-}
-
-inline auto makeLowCutFilter(const ChainSettings& chainSettings, double sampleRate)
-{
-    return juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(
-            chainSettings.lowCutFreq,
-            sampleRate,
-            2*(chainSettings.lowCutSlope +1));
-}
-
-inline auto makeHighCutFilter(const ChainSettings& chainSettings, double sampleRate)
-{
-    return juce::dsp::FilterDesign<float>::designIIRLowpassHighOrderButterworthMethod(
-            chainSettings.highCutFreq,
-            sampleRate,
-            2*(chainSettings.highCutSlope +1));
-}
 
 //==============================================================================
 class AudioPluginAudioProcessor  : public juce::AudioProcessor
