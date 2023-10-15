@@ -133,6 +133,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
     using namespace juce;
 
+
     g.drawImage(background,getLocalBounds().toFloat());
     // GET ResponseArea PIXEL
     auto responseArea =  getAnalysisArea();
@@ -211,10 +212,15 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         responseCurve.lineTo(responseArea.getX()+ i, map(mags[i]));
     }
 
+    // DRAW FFT
 
-    g.setColour(Colours::blue);
+    leftChannelFFTPath.applyTransform(AffineTransform().translation(responseArea.getX(),
+                                                                    responseArea.getY()));
+    g.setColour(Colours::white);
     g.strokePath(leftChannelFFTPath,PathStrokeType(1.f));
 
+
+    // DRAW BUTTON
     // TODO: Get Cutoff freq from peak and draw it
 
     g.setColour(Colours::orange);
@@ -224,6 +230,8 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
     g.drawRoundedRectangle(getRenderArea().toFloat(),4.f,1.f);
 
+
+    // DRAW RESPONSECURVE
 
     g.setColour(Colours::white);
     // Paint Path
