@@ -5,6 +5,12 @@
 #ifndef AUDIO_PLUGIN_EXAMPLE_SETTING_H
 #define AUDIO_PLUGIN_EXAMPLE_SETTING_H
 
+enum Channel
+{
+    Right,  // Effectively 0
+    Left    // Effectively 1
+};
+
 enum ChainPositions
 {
     LowCut,

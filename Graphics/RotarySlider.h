@@ -2,7 +2,7 @@
 // Created by Kai on 15.10.23.
 //
 
-#include "../Processor/PluginProcessor.h"
+#include <juce_audio_processors/juce_audio_processors.h>
 
 #ifndef AUDIO_PLUGIN_EXAMPLE_ROTARYSLIDER_H
 #define AUDIO_PLUGIN_EXAMPLE_ROTARYSLIDER_H
@@ -30,7 +30,7 @@ struct RotarySliderWithLabels : juce::Slider
         setLookAndFeel(&lnf);
     }
 
-    ~RotarySliderWithLabels()
+    ~RotarySliderWithLabels() override
     {
         setLookAndFeel(nullptr);
     }

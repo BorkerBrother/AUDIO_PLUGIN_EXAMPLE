@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Processor/PluginProcessor.h"
-#include "../Graphics/RotarySlider.h"
-#include "../Graphics/ResponseCurveComponent.h"
+#include "RotarySlider.h"
+#include "ResponseCurveComponent.h"
+
 
 //==============================================================================
 class AudioPluginAudioProcessorEditor  : public juce::AudioProcessorEditor
@@ -48,6 +48,8 @@ private:
 
     // VECTOR FOR SLIDERS
     std::vector<juce::Component*> getComps();
+
+
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
 };

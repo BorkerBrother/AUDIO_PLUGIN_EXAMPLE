@@ -2,10 +2,12 @@
 // Created by Kai on 15.10.23.
 //
 
-#include "../Processor/PluginProcessor.h"
 
-#ifndef AUDIO_PLUGIN_EXAMPLE_RESPONSECURVECOMPONENT_H
-#define AUDIO_PLUGIN_EXAMPLE_RESPONSECURVECOMPONENT_H
+
+
+#include "../Processor/PluginProcessor.h"
+#include "FFT.h"
+#include "PathGenerator.h"
 
 
 //==============================================================================
@@ -16,7 +18,7 @@ struct ResponseCurveComponent: juce::Component,
                                juce::Timer
 {
     ResponseCurveComponent(AudioPluginAudioProcessor&);
-    ~ResponseCurveComponent() override;
+    ~ResponseCurveComponent() ;
 
     void parameterValueChanged (int parameterIndex, float newValue) override ;
     void parameterGestureChanged (int parameterIndex, bool gestureIsStarting) override { }
@@ -27,6 +29,10 @@ struct ResponseCurveComponent: juce::Component,
     juce::Rectangle<int> getRenderArea();
 
     juce::Rectangle<int> getAnalysisArea();
+
+    // FIFO
+
+    juce::AudioBuffer<float> monoBuffer;
 
 private:
 
@@ -45,7 +51,18 @@ private:
 
     juce::Image background;
 
+    // FIFO
+    SingleChannelSampleFifo<AudioPluginAudioProcessor::BlockType>*  leftChannelFifo;
+
+    // FFT
+
+    FFTDataGenerator<std::vector<float>> leftChannelFFTDataGenerator;
+
+    AnalyzerPathGenerator<juce::Path> pathProducer;
+
+    juce::Path leftChannelFFTPath;
+
 };
 
 
-#endif //AUDIO_PLUGIN_EXAMPLE_RESPONSECURVECOMPONENT_H
+

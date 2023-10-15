@@ -25,11 +25,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Graphics/FFT.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Graphics/PathGenerator.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Processor/Fifo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginProcessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/RotarySlider.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/RotarySlider.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/Setting.h" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/Setting.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,11 +108,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.AudioPluginExample_VST3">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Unnamed" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory">
       <method v="2" />
     </configuration>
@@ -124,6 +127,11 @@
       </method>
     </configuration>
     <configuration name="AudioPluginExample_VST3" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AUDIO_PLUGIN_EXAMPLE" TARGET_NAME="AudioPluginExample_VST3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="AUDIO_PLUGIN_EXAMPLE" RUN_TARGET_NAME="AudioPluginExample_Standalone">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -170,6 +178,7 @@
       <workItem from="1697042168915" duration="5807000" />
       <workItem from="1697194858835" duration="1776000" />
       <workItem from="1697356309636" duration="2960000" />
+      <workItem from="1697370575401" duration="7127000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -339,7 +348,28 @@
       <option name="project" value="LOCAL" />
       <updated>1697359045965</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Cleaned Up Graphics Structure">
+      <created>1697366480668</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1697366480668</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Cleaned Up Graphics Structure">
+      <created>1697366764463</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1697366764463</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Cleaned Up Processor Structure">
+      <created>1697369144432</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1697369144432</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +387,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
     <MESSAGE value="Fixed Bugs" />
     <MESSAGE value="Safe State Information" />
     <MESSAGE value="Added Sliders to GUI" />
@@ -382,7 +411,8 @@
     <MESSAGE value="Added dB Labels - Issue Draw in right area" />
     <MESSAGE value="Fixed Horizontal Line Issue and + // - in String" />
     <MESSAGE value="Cleaned Up Graphics Structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned Up Graphics Structure" />
+    <MESSAGE value="Cleaned Up Processor Structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned Up Processor Structure" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

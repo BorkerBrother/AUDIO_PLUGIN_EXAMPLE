@@ -5,13 +5,18 @@
 #include "ResponseCurveComponent.h"
 
 //==============================================================================
-ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor& p) : processorRef (p)
+ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor& p) : processorRef (p),
+leftChannelFifo(&processorRef.leftChannelFifo)
 {
     const auto& params = processorRef.getParameters();
     for ( auto param : params )
     {
         param->addListener(this);
     }
+
+    leftChannelFFTDataGenerator.changeOrder(FFTOrder::order2048);
+
+    monoBuffer.setSize(1,leftChannelFFTDataGenerator.getFFTSize());
 
     updateChain();
 
@@ -26,6 +31,7 @@ ResponseCurveComponent::~ResponseCurveComponent()
     {
         param->removeListener(this);
     }
+
 }
 
 
@@ -45,13 +51,67 @@ The time interval isn't guaranteed to be precise to any more than maybe 10-20ms,
 
 void ResponseCurveComponent::timerCallback() {
 
+
+    juce::AudioBuffer<float> tempIncomingBuffer;
+
+    while( leftChannelFifo->getNumCompleteBuffersAvailable() > 0 )
+    {
+        if ( leftChannelFifo->getAudioBuffer(tempIncomingBuffer) )
+        {
+            auto size = tempIncomingBuffer.getNumSamples();
+
+            juce::FloatVectorOperations::copy(monoBuffer.getWritePointer(0,0),
+                                              monoBuffer.getReadPointer(0, size),
+                                              monoBuffer.getNumSamples() - size);
+
+            juce::FloatVectorOperations::copy(monoBuffer.getWritePointer(0,monoBuffer.getNumSamples() - size),
+                                                                         tempIncomingBuffer.getReadPointer(0,0),
+                                                                         size);
+
+            leftChannelFFTDataGenerator.produceFFTDataForRendering(monoBuffer,-48.f);
+
+            // If we can pull a buffer generate a path
+
+
+
+        }
+    }
+
+    auto fftBounds = getAnalysisArea().toFloat();
+    auto fftSize = leftChannelFFTDataGenerator.getFFTSize();
+
+    const auto binWidth = processorRef.getSampleRate() / (double)fftSize;
+
+    while ( leftChannelFFTDataGenerator.getNumAvailableFFTDataBlocks() > 0 )
+    {
+        std::vector<float> fftData;
+        if (leftChannelFFTDataGenerator.getFFTData(fftData))
+        {
+            pathProducer.generatePath(fftData,
+                                      fftBounds,
+                                      fftSize,
+                                      binWidth, -48.f);
+
+        }
+
+    }
+
+    // While there are paths that can pull  -> pull as many as we can
+
+    while(pathProducer.getNumPathsAvailable() )
+    {
+        pathProducer.getPath(leftChannelFFTPath);
+    }
+
     if ( parametersChanged.compareAndSetBool(false,true) )
     {
-
         updateChain();
         // Repaint
-        repaint();
+        //repaint();
     }
+
+    repaint();
+
 }
 
 void ResponseCurveComponent::updateChain()
@@ -150,6 +210,10 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     {
         responseCurve.lineTo(responseArea.getX()+ i, map(mags[i]));
     }
+
+
+    g.setColour(Colours::blue);
+    g.strokePath(leftChannelFFTPath,PathStrokeType(1.f));
 
     // TODO: Get Cutoff freq from peak and draw it
 

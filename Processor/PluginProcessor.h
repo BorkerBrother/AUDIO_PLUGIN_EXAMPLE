@@ -6,8 +6,7 @@
 #include "CutFilter.h"
 #include "Setting.h"
 #include "TemplateCoefficients.h"
-
-
+#include "Fifo.h"
 
 
 //==============================================================================
@@ -53,6 +52,11 @@ public:
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
     juce::AudioProcessorValueTreeState apvts {*this, nullptr,"Parameters",createParameterLayout()};
+
+    // FIFO
+    using BlockType = juce::AudioBuffer<float>;
+    SingleChannelSampleFifo<BlockType> leftChannelFifo {Channel::Left};
+    SingleChannelSampleFifo<BlockType> rightChannelFifo {Channel::Left};
 
 
 private:

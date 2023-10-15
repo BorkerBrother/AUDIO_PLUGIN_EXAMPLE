@@ -1,5 +1,4 @@
 #include <juce_gui_extra/misc/juce_LiveConstantEditor.h>
-#include "../Processor/PluginProcessor.h"
 #include "PluginEditor.h"
 
 //==============================================================================
