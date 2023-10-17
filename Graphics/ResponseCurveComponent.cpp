@@ -239,7 +239,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
 
 
-    // TODO: Get Cutoff freq from peak and draw it
+    // TODO: Set correct values to print
     // ---------------DRAW BUTTON
     g.setColour(Colours::orange);
     juce::Rectangle<float> pointArea ({});
