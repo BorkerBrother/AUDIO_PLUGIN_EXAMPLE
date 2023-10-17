@@ -6,7 +6,9 @@
 
 //==============================================================================
 ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor& p) : processorRef (p),
-leftChannelFifo(&processorRef.leftChannelFifo)
+leftPathProducer(processorRef.leftChannelFifo),
+rightPathProducer(processorRef.rightChannelFifo)
+
 {
     const auto& params = processorRef.getParameters();
     for ( auto param : params )
@@ -14,9 +16,6 @@ leftChannelFifo(&processorRef.leftChannelFifo)
         param->addListener(this);
     }
 
-    leftChannelFFTDataGenerator.changeOrder(FFTOrder::order2048);
-
-    monoBuffer.setSize(1,leftChannelFFTDataGenerator.getFFTSize());
 
     updateChain();
 
@@ -49,8 +48,7 @@ The time interval isn't guaranteed to be precise to any more than maybe 10-20ms,
  blocks the message queue for a period of time will also prevent any timers from running until it can carry on.
  */
 
-void ResponseCurveComponent::timerCallback() {
-
+void PathProducer::process(juce::Rectangle<float> fftBounds, double sampleRate) {
 
     juce::AudioBuffer<float> tempIncomingBuffer;
 
@@ -65,8 +63,8 @@ void ResponseCurveComponent::timerCallback() {
                                               monoBuffer.getNumSamples() - size);
 
             juce::FloatVectorOperations::copy(monoBuffer.getWritePointer(0,monoBuffer.getNumSamples() - size),
-                                                                         tempIncomingBuffer.getReadPointer(0,0),
-                                                                         size);
+                                              tempIncomingBuffer.getReadPointer(0,0),
+                                              size);
 
             leftChannelFFTDataGenerator.produceFFTDataForRendering(monoBuffer,-48.f);
 
@@ -77,10 +75,9 @@ void ResponseCurveComponent::timerCallback() {
         }
     }
 
-    auto fftBounds = getAnalysisArea().toFloat();
     auto fftSize = leftChannelFFTDataGenerator.getFFTSize();
 
-    const auto binWidth = processorRef.getSampleRate() / (double)fftSize;
+    const auto binWidth = sampleRate / (double)fftSize;
 
     while ( leftChannelFFTDataGenerator.getNumAvailableFFTDataBlocks() > 0 )
     {
@@ -102,6 +99,17 @@ void ResponseCurveComponent::timerCallback() {
     {
         pathProducer.getPath(leftChannelFFTPath);
     }
+
+}
+
+void ResponseCurveComponent::timerCallback() {
+
+    auto fftBounds = getAnalysisArea().toFloat();
+    auto sampleRate = processorRef.getSampleRate();
+
+    leftPathProducer.process(fftBounds, sampleRate);
+    rightPathProducer.process(fftBounds, sampleRate);
+
 
     if ( parametersChanged.compareAndSetBool(false,true) )
     {
@@ -212,12 +220,22 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         responseCurve.lineTo(responseArea.getX()+ i, map(mags[i]));
     }
 
-    // DRAW FFT
+    // DRAW FFT LEFT
 
+    auto leftChannelFFTPath = leftPathProducer.getPath();
     leftChannelFFTPath.applyTransform(AffineTransform().translation(responseArea.getX(),
                                                                     responseArea.getY()));
+
     g.setColour(Colours::white);
     g.strokePath(leftChannelFFTPath,PathStrokeType(1.f));
+
+    // DRAW FFT RIGHT
+    auto rightChannelFFTPath = rightPathProducer.getPath();
+    rightChannelFFTPath.applyTransform(AffineTransform().translation(responseArea.getX(),
+                                                                    responseArea.getY()));
+
+    g.setColour(Colours::orange);
+    g.strokePath(rightChannelFFTPath,PathStrokeType(1.f));
 
 
     // DRAW BUTTON
