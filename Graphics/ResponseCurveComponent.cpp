@@ -239,24 +239,25 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
 
 
-    // TODO: Set correct values to print
+    // TODO: Get x and y from Mouse Event
     // ---------------DRAW BUTTON
-    g.setColour(Colours::orange);
+
     juce::Rectangle<float> pointArea ({});
 
     //------------------- POINT X
     auto pointXTest = (processorRef.apvts.getRawParameterValue("Peak Freq"))->operator float();
     // Minimale und maximale Herzfrequenz
-    float minHerzFrequenz = 20.0f;
-    float maxHerzFrequenz = 20000.0f;
 
-    // Zielbereich von 0 bis 100
-        float minZielWert = 35.0f;
-        float maxZielWert = 765.0f;
+    float minFrequency = 20.0f;
+    float maxFrequency = 20000.0f;
+
+    float minXValueMin = 35.0f;
+    float minXValueMax = 765.0f;
+
 
     // Umwandlung der Herzfrequenz in den Bereich von 0-100
-    float umgewandelteWertX = ((((pointXTest - minHerzFrequenz) / (maxHerzFrequenz - minHerzFrequenz)) * (maxZielWert - minZielWert) + minZielWert));
-
+    //float umgewandelteWertX = jmap(pointXTest, minFrequency, maxFrequency, minXValueMin, minXValueMax);
+    float umgewandelteWertX = jmap(log10(pointXTest), log10(minFrequency), log10(maxFrequency), minXValueMin, minXValueMax);
     //------------------- POINT Y
     auto pointYTest = -1*(processorRef.apvts.getRawParameterValue("Peak Gain"))->operator float();
     // Minimale und maximale Herzfrequenz
@@ -271,11 +272,6 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     float umgewandelteWertY = ((pointYTest - minDB) / (maxDB - minDB)) * (maxDBPixel - minDBPixel) + minDBPixel;
 
 
-    pointArea.setBounds(umgewandelteWertX,umgewandelteWertY,10,10);
-    //pointArea.setBottom(getAnalysisArea().getBottom());
-    //pointArea.setTop(getAnalysisArea().getY());
-    g.fillRect (pointArea);
-    g.drawRoundedRectangle(getRenderArea().toFloat(),4.f,1.f);
 
 
     // DRAW RESPONSECURVE
@@ -283,6 +279,16 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     g.setColour(Colours::white);
     // Paint Path
     g.strokePath(responseCurve,PathStrokeType(2.f));
+
+
+    // DRAW POINT
+    g.setColour(Colours::orange);
+    pointArea.setBounds(umgewandelteWertX,umgewandelteWertY,10,10);
+    //pointArea.setBottom(getAnalysisArea().getBottom());
+    //pointArea.setTop(getAnalysisArea().getY());
+    g.fillRect (pointArea);
+    g.drawRoundedRectangle(getRenderArea().toFloat(),4.f,1.f);
+
 
 }
 
@@ -421,11 +427,7 @@ void ResponseCurveComponent::resized()
 
         g.drawFittedText(str,r,juce::Justification::centred,1);
 
-
     }
-
-
-
 }
 
 juce::Rectangle<int> ResponseCurveComponent::getRenderArea()
