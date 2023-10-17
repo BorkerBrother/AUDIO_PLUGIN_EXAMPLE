@@ -26,7 +26,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,11 +121,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="CMake Application.AudioPluginExample" />
       <item itemvalue="CMake Application.AudioPluginExample_All" />
@@ -167,7 +163,8 @@
       <workItem from="1697042168915" duration="5807000" />
       <workItem from="1697194858835" duration="1776000" />
       <workItem from="1697356309636" duration="2960000" />
-      <workItem from="1697370575401" duration="7775000" />
+      <workItem from="1697370575401" duration="8418000" />
+      <workItem from="1697559753101" duration="466000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -365,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697377974574</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Fixed X Position of Analyzer FFT: Issue set correct Area in Y">
+      <created>1697378489055</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1697378489055</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +387,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Safe State Information" />
     <MESSAGE value="Added Sliders to GUI" />
     <MESSAGE value="Added SlidersAttachment to GUI" />
     <MESSAGE value="Give Editor his own MonoChain" />
@@ -408,7 +411,8 @@
     <MESSAGE value="Cleaned Up Graphics Structure" />
     <MESSAGE value="Cleaned Up Processor Structure" />
     <MESSAGE value="Implementet basic FFT Design" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementet basic FFT Design" />
+    <MESSAGE value="Fixed X Position of Analyzer FFT: Issue set correct Area in Y" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed X Position of Analyzer FFT: Issue set correct Area in Y" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
