@@ -5,11 +5,10 @@
 #include "ResponseCurveComponent.h"
 
 //==============================================================================
-ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor& p) : processorRef (p),
-leftPathProducer(processorRef.leftChannelFifo),
-rightPathProducer(processorRef.rightChannelFifo)
-
-{
+ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor &p, juce::MouseEvent mouseEvent)
+        : processorRef (p),
+          leftPathProducer(processorRef.leftChannelFifo),
+          rightPathProducer(processorRef.rightChannelFifo), mouseEvent(mouseEvent) {
     const auto& params = processorRef.getParameters();
     for ( auto param : params )
     {
@@ -238,13 +237,21 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     g.strokePath(rightChannelFFTPath,PathStrokeType(1.f));
 
 
+    // GET MOUSE EVENTS
+
+
+
+
+    auto mouseX = mouseEvent.getMouseDownX();
+    auto mouseY = mouseEvent.getMouseDownY();
 
     // TODO: Get x and y from Mouse Event
-    // ---------------DRAW BUTTON
+    // ---------------DRAW BUTTON PEAK
 
     juce::Rectangle<float> pointArea ({});
+    juce::Rectangle<float> pointAreaLow ({});
 
-    //------------------- POINT X
+    //POINT X PEAK
     auto pointXTest = (processorRef.apvts.getRawParameterValue("Peak Freq"))->operator float();
     // Minimale und maximale Herzfrequenz
 
@@ -252,13 +259,13 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     float maxFrequency = 20000.0f;
 
     float minXValueMin = 35.0f;
-    float minXValueMax = 765.0f;
+    float minXValueMax = 755.0f;
 
 
     // Umwandlung der Herzfrequenz in den Bereich von 0-100
     //float umgewandelteWertX = jmap(pointXTest, minFrequency, maxFrequency, minXValueMin, minXValueMax);
     float umgewandelteWertX = jmap(log10(pointXTest), log10(minFrequency), log10(maxFrequency), minXValueMin, minXValueMax);
-    //------------------- POINT Y
+    //POINT Y PEAK
     auto pointYTest = -1*(processorRef.apvts.getRawParameterValue("Peak Gain"))->operator float();
     // Minimale und maximale Herzfrequenz
     float minDB = -24.f;
@@ -266,12 +273,16 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
     // Zielbereich von 0 bis 100
     float minDBPixel = 20.0f;
-    float maxDBPixel = 150.0f;
+    float maxDBPixel = 145.0f;
 
     // Umwandlung der Herzfrequenz in den Bereich von 0-100
     float umgewandelteWertY = ((pointYTest - minDB) / (maxDB - minDB)) * (maxDBPixel - minDBPixel) + minDBPixel;
 
+    // ---------------DRAW BUTTON LOWCUT
+    auto pointXLow = (processorRef.apvts.getRawParameterValue("LowCut Freq"))->operator float();
+    // Minimale und maximale Herzfrequenz
 
+    float umgewandelteWertXLow = jmap(log10(pointXLow), log10(minFrequency), log10(maxFrequency), minXValueMin, minXValueMax);
 
 
     // DRAW RESPONSECURVE
@@ -281,15 +292,39 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     g.strokePath(responseCurve,PathStrokeType(2.f));
 
 
-    // DRAW POINT
-    g.setColour(Colours::orange);
-    pointArea.setBounds(umgewandelteWertX,umgewandelteWertY,10,10);
-    //pointArea.setBottom(getAnalysisArea().getBottom());
-    //pointArea.setTop(getAnalysisArea().getY());
-    g.fillRect (pointArea);
-    g.drawRoundedRectangle(getRenderArea().toFloat(),4.f,1.f);
+    if (mouseEvent.isPressureValid())
+    {
+        // DRAW POINT PEAK
+        g.setColour(Colours::orange);
+        pointArea.setBounds(mouseX, mouseY, 10, 10);
+        //pointArea.setBottom(getAnalysisArea().getBottom());
+        //pointArea.setTop(getAnalysisArea().getY());
+        g.drawRoundedRectangle(pointArea, 4.f, 1.f);
+        g.fillRoundedRectangle(pointArea, 4.f);
+        g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
 
+        // DRAW LOWCUT POINT
+        pointAreaLow.setBounds(umgewandelteWertXLow, getRenderArea().getCentreY(), 10, 10);
+        g.drawRoundedRectangle(pointAreaLow, 4.f, 1.f);
+        g.fillRoundedRectangle(pointAreaLow, 4.f);
+        g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
+    }
+    else {
+        // DRAW POINT PEAK
+        g.setColour(Colours::orange);
+        pointArea.setBounds(umgewandelteWertX, umgewandelteWertY, 10, 10);
+        //pointArea.setBottom(getAnalysisArea().getBottom());
+        //pointArea.setTop(getAnalysisArea().getY());
+        g.drawRoundedRectangle(pointArea, 4.f, 1.f);
+        g.fillRoundedRectangle(pointArea, 4.f);
+        g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
 
+        // DRAW LOWCUT POINT
+        pointAreaLow.setBounds(umgewandelteWertXLow, getRenderArea().getCentreY(), 10, 10);
+        g.drawRoundedRectangle(pointAreaLow, 4.f, 1.f);
+        g.fillRoundedRectangle(pointAreaLow, 4.f);
+        g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
+    }
 }
 
 

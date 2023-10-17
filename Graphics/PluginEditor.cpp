@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
+AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor(AudioPluginAudioProcessor &p)
     : AudioProcessorEditor (&p), processorRef (p),
 
       peakFreqSlider(*processorRef.apvts.getParameter("Peak Freq"), "Hz"),
@@ -13,7 +13,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
       lowCutSlopeSlider(*processorRef.apvts.getParameter( "LowCut Slope"), "dB/Oct"),
       highCutSlopeSlider(*processorRef.apvts.getParameter( "HighCut Slope"), "dB/Oct"),
 
-      responseCurveComponent(processorRef),
+      responseCurveComponent(processorRef,mouseEvent),
 
       peakFreqSliderAttachment(processorRef.apvts, "Peak Freq", peakFreqSlider),
       peakGainSliderAttachment(processorRef.apvts, "Peak Gain", peakGainSlider),
@@ -21,9 +21,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
       lowCutFreqSliderAttachment(processorRef.apvts, "LowCut Freq", lowCutFreqSlider),
       highCutFreqSliderAttachment(processorRef.apvts, "HighCut Freq", highCutFreqSlider),
       lowCutSlopeSliderAttachment(processorRef.apvts, "LowCut Slope", lowCutSlopeSlider),
-      highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSlider)
-
-{
+      highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSlider), mouseEvent(mouseEvent) {
 
     // LABELS
     peakFreqSlider.labels.add({0.f, "20Hz"});
@@ -41,9 +39,12 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     for (auto* comp : getComps())
     {
         addAndMakeVisible(comp);
-
         // TODO: Make Slope a ComboBox
     }
+    //addAndMakeVisible(peakGainSlider);
+    //addAndMakeVisible(peakFreqSlider);
+    //addAndMakeVisible(peakQualitySlider);
+    //addAndMakeVisible(responseCurveComponent);
 
     setSize (800, 500);
 }
@@ -67,6 +68,8 @@ void AudioPluginAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+
+    // TODO: Change rearange  rotary slider section Responsarea
 
     auto bounds = getLocalBounds();
     float hRatio = JUCE_LIVE_CONSTANT(33) / 100.f;

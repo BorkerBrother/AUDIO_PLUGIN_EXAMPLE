@@ -26,7 +26,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +167,8 @@
       <workItem from="1697194858835" duration="1776000" />
       <workItem from="1697356309636" duration="2960000" />
       <workItem from="1697370575401" duration="8418000" />
-      <workItem from="1697559753101" duration="10546000" />
+      <workItem from="1697559753101" duration="10962000" />
+      <workItem from="1697583331979" duration="3202000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -396,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697573719271</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Implemented point on peak position - Solved issue wrong value">
+      <created>1697576344225</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1697576344225</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,7 +426,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored PeakCoefficients" />
     <MESSAGE value="Draw Peak" />
     <MESSAGE value="Draw Cutfilter" />
     <MESSAGE value="Draw Cutfilter inside bounds" />
@@ -439,7 +450,8 @@
     <MESSAGE value="Building OSC TEST" />
     <MESSAGE value="Implemented Spectrum Analyzer" />
     <MESSAGE value="Implemented point on peak position - Issue wrong value" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented point on peak position - Issue wrong value" />
+    <MESSAGE value="Implemented point on peak position - Solved issue wrong value" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented point on peak position - Solved issue wrong value" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

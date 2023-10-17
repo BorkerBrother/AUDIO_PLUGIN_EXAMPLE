@@ -9,7 +9,6 @@
 #include "FFT.h"
 #include "PathGenerator.h"
 
-
 //==============================================================================
 
 struct PathProducer
@@ -29,6 +28,7 @@ struct PathProducer
     }
     void process(juce::Rectangle<float> fftBounds, double sampleRate);
     juce::Path getPath() { return leftChannelFFTPath; }
+
 private:
     // FIFO
     SingleChannelSampleFifo<AudioPluginAudioProcessor::BlockType>*  leftChannelFifo;
@@ -50,7 +50,7 @@ struct ResponseCurveComponent: juce::Component,
                                juce::AudioProcessorParameter::Listener,
                                juce::Timer
 {
-    ResponseCurveComponent(AudioPluginAudioProcessor&);
+    ResponseCurveComponent(AudioPluginAudioProcessor &, juce::MouseEvent mouseEvent);
     ~ResponseCurveComponent() ;
 
     void parameterValueChanged (int parameterIndex, float newValue) override ;
@@ -79,6 +79,8 @@ private:
     void updateChain();
 
     MonoChain monoChain;
+
+    juce::MouseEvent mouseEvent;
 
     juce::Image background;
 

@@ -9,7 +9,7 @@ class AudioPluginAudioProcessorEditor  : public juce::AudioProcessorEditor
 
 {
 public:
-    explicit AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor&);
+    AudioPluginAudioProcessorEditor(AudioPluginAudioProcessor &);
     ~AudioPluginAudioProcessorEditor() override;
 
     //==============================================================================
@@ -20,6 +20,8 @@ public:
 private:
     //
     AudioPluginAudioProcessor& processorRef;
+
+    juce::MouseEvent mouseEvent;
 
     // Create ROTARY SLIDER
     RotarySliderWithLabels
