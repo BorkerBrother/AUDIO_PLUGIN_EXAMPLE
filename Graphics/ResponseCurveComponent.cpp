@@ -238,14 +238,43 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     g.strokePath(rightChannelFFTPath,PathStrokeType(1.f));
 
 
-    // DRAW BUTTON
-    // TODO: Get Cutoff freq from peak and draw it
 
+    // TODO: Get Cutoff freq from peak and draw it
+    // ---------------DRAW BUTTON
     g.setColour(Colours::orange);
     juce::Rectangle<float> pointArea ({});
-    pointArea.setBounds(10,10,10,10);
-    g.fillRect (pointArea);
 
+    //------------------- POINT X
+    auto pointXTest = (processorRef.apvts.getRawParameterValue("Peak Freq"))->operator float();
+    // Minimale und maximale Herzfrequenz
+    float minHerzFrequenz = 20.0f;
+    float maxHerzFrequenz = 20000.0f;
+
+    // Zielbereich von 0 bis 100
+        float minZielWert = 35.0f;
+        float maxZielWert = 765.0f;
+
+    // Umwandlung der Herzfrequenz in den Bereich von 0-100
+    float umgewandelteWertX = ((((pointXTest - minHerzFrequenz) / (maxHerzFrequenz - minHerzFrequenz)) * (maxZielWert - minZielWert) + minZielWert));
+
+    //------------------- POINT Y
+    auto pointYTest = -1*(processorRef.apvts.getRawParameterValue("Peak Gain"))->operator float();
+    // Minimale und maximale Herzfrequenz
+    float minDB = -24.f;
+    float maxDB = 24.f;
+
+    // Zielbereich von 0 bis 100
+    float minDBPixel = 20.0f;
+    float maxDBPixel = 150.0f;
+
+    // Umwandlung der Herzfrequenz in den Bereich von 0-100
+    float umgewandelteWertY = ((pointYTest - minDB) / (maxDB - minDB)) * (maxDBPixel - minDBPixel) + minDBPixel;
+
+
+    pointArea.setBounds(umgewandelteWertX,umgewandelteWertY,10,10);
+    //pointArea.setBottom(getAnalysisArea().getBottom());
+    //pointArea.setTop(getAnalysisArea().getY());
+    g.fillRect (pointArea);
     g.drawRoundedRectangle(getRenderArea().toFloat(),4.f,1.f);
 
 

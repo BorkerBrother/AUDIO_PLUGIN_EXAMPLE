@@ -43,6 +43,8 @@ private:
 
 };
 
+
+//==============================================================================
 // ResponseCurveComponent Object
 struct ResponseCurveComponent: juce::Component,
                                juce::AudioProcessorParameter::Listener,
@@ -80,6 +82,7 @@ private:
 
     juce::Image background;
 
+    // ANALYZER
     PathProducer leftPathProducer, rightPathProducer;
 
 };
