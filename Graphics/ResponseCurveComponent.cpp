@@ -240,7 +240,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     g.setColour(Colours::white);
 
 
-    g.strokePath(leftChannelFFTPath,PathStrokeType(5, juce::PathStrokeType::curved));
+    g.strokePath(leftChannelFFTPath,PathStrokeType(2, juce::PathStrokeType::curved));
 
 
     // DRAW FFT RIGHT
@@ -253,9 +253,11 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
 
 
+    juce::Point<int> mousePos = juce::Desktop::getInstance().getMousePosition();
+    auto mouseX = mousePos.getX();
+    auto mouseY = mousePos.getY();
 
-    auto mouseX = mouseEvent.getMouseDownX();
-    auto mouseY = mouseEvent.getMouseDownY();
+    DBG(mouseX);
 
     // TODO: Get x and y from Mouse Event
     // ---------------DRAW BUTTON PEAK
@@ -309,24 +311,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     g.strokePath(responseCurve,PathStrokeType(2.f));
 
 
-    if (mouseEvent.isPressureValid())
-    {
-        // DRAW POINT PEAK
-        g.setColour(Colours::orange);
-        pointArea.setBounds(mouseX, mouseY, 10, 10);
-        //pointArea.setBottom(getAnalysisArea().getBottom());
-        //pointArea.setTop(getAnalysisArea().getY());
-        g.drawRoundedRectangle(pointArea, 4.f, 1.f);
-        g.fillRoundedRectangle(pointArea, 4.f);
-        g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
 
-        // DRAW LOWCUT POINT
-        pointAreaLow.setBounds(umgewandelteWertXLow, getRenderArea().getCentreY(), 10, 10);
-        g.drawRoundedRectangle(pointAreaLow, 4.f, 1.f);
-        g.fillRoundedRectangle(pointAreaLow, 4.f);
-        g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
-    }
-    else {
         // DRAW POINT PEAK
         g.setColour(Colours::orange);
         pointArea.setBounds(umgewandelteWertX, umgewandelteWertY, 10, 10);
@@ -341,7 +326,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         g.drawRoundedRectangle(pointAreaLow, 4.f, 1.f);
         g.fillRoundedRectangle(pointAreaLow, 4.f);
         g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
-    }
+
 }
 
 

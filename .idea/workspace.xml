@@ -29,7 +29,6 @@
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphics/PathGenerator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PathGenerator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +172,7 @@
       <workItem from="1697356309636" duration="2960000" />
       <workItem from="1697370575401" duration="8418000" />
       <workItem from="1697559753101" duration="10962000" />
-      <workItem from="1697583331979" duration="15990000" />
+      <workItem from="1697583331979" duration="17792000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -434,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697589786384</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Draw Curved Analyzer">
+      <created>1697624365008</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1697624365008</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +458,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add comments" />
     <MESSAGE value="Try print a point to Peakfreq" />
     <MESSAGE value="Implemented Skeleton for custom Slider visuals" />
     <MESSAGE value="Draw Buttons : Issue - draw Angle Lines" />
@@ -477,7 +482,8 @@
     <MESSAGE value="Added Mouse Object &#10;Draw LowCut Point" />
     <MESSAGE value="New Design" />
     <MESSAGE value="New design changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="New design changes" />
+    <MESSAGE value="Draw Curved Analyzer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Draw Curved Analyzer" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -107,7 +107,7 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     osc.initialise([] (float x) { return std::sin(x); } );
     spec.numChannels = getTotalNumOutputChannels();
     osc.prepare(spec);
-    osc.setFrequency(200);
+    osc.setFrequency(100);
 
 
 }

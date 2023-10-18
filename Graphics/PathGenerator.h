@@ -41,8 +41,10 @@ struct AnalyzerPathGenerator
 
         for (int binNum = 1; binNum < numBins; binNum += pathResolution)
         {
-            float amplitude = renderData[binNum];
+            //float amplitude = renderData[binNum];
             float x = juce::mapFromLog10(binNum * binWidth, 20.0f, 20000.0f); // X-Koordinate basierend auf der Frequenz
+            float scaleFactor = 1.0f + 0.2f * binNum; // Ändere 0.2f nach Bedarf
+            float amplitude = renderData[binNum] * scaleFactor;
             float y = map(amplitude); // Y-Koordinate basierend auf der Amplitude
 
             if (!std::isnan(y) && !std::isinf(y))
