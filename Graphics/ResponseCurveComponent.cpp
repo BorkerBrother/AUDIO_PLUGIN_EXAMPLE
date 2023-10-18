@@ -8,7 +8,7 @@
 ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor &p, juce::MouseEvent mouseEvent)
         : processorRef (p),
           leftPathProducer(processorRef.leftChannelFifo),
-          rightPathProducer(processorRef.rightChannelFifo), mouseEvent(mouseEvent) {
+          rightPathProducer(processorRef.rightChannelFifo), mouseEvent() {
     const auto& params = processorRef.getParameters();
     for ( auto param : params )
     {
@@ -253,11 +253,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
 
 
-    juce::Point<int> mousePos = juce::Desktop::getInstance().getMousePosition();
-    auto mouseX = mousePos.getX();
-    auto mouseY = mousePos.getY();
 
-    DBG(mouseX);
 
     // TODO: Get x and y from Mouse Event
     // ---------------DRAW BUTTON PEAK
@@ -297,6 +293,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
     // Minimale und maximale Herzfrequenz
 
     float umgewandelteWertXLow = jmap(log10(pointXLow), log10(minFrequency), log10(maxFrequency), minXValueMin, minXValueMax);
+
 
 
     // DRAW RESPONSECURVE

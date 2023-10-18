@@ -81,13 +81,14 @@ private:
     MonoChain monoChain;
 
 
-    juce::MouseEvent mouseEvent;
+    //juce::MouseEvent mouseEvent;
 
     juce::Image background;
 
     // ANALYZER
     PathProducer leftPathProducer, rightPathProducer;
 
+    int mouseEvent;
 };
 
 

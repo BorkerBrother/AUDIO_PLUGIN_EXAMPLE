@@ -88,6 +88,7 @@ target_sources(AudioPluginExample
         Graphics/ResponseCurveComponent.h
         Graphics/FFT.h
         Graphics/PathGenerator.h
+        Graphics/MouseEvent.h
 
         )
 
