@@ -80,6 +80,7 @@ private:
 
     MonoChain monoChain;
 
+
     juce::MouseEvent mouseEvent;
 
     juce::Image background;

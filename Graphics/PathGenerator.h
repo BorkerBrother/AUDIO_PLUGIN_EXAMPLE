@@ -27,36 +27,29 @@ struct AnalyzerPathGenerator
 
         PathType p;
         p.preallocateSpace(3 * (int)fftBounds.getWidth());
-
-        auto map = [bottom, top, negativeInfinity](float v)
-        {
-            return juce::jmap(v,
-                              negativeInfinity, 0.f,
-                              float(bottom+10),   top);
+        auto map = [bottom, top, negativeInfinity](float v) {
+            return juce::jmap(v, negativeInfinity, 0.f, float(bottom + 10), top);
         };
 
         auto y = map(renderData[0]);
+        jassert(!std::isnan(y) && !std::isinf(y));
+        if (!std::isnan(y) && !std::isinf(y)) {
+            p.startNewSubPath(0, y);
+        }
 
-        jassert( !std::isnan(y) && !std::isinf(y) );
-        if( std::isnan(y) || std::isinf(y) )
-            y = bottom;
+        const int pathResolution = 1;
 
-        p.startNewSubPath(0, y);
-
-        const int pathResolution = 2; //you can draw line-to's every 'pathResolution' pixels.
-
-        for( int binNum = 1; binNum < numBins; binNum += pathResolution )
+        for (int binNum = 1; binNum < numBins; binNum += pathResolution)
         {
-            y = map(renderData[binNum]);
+            float amplitude = renderData[binNum];
+            float x = juce::mapFromLog10(binNum * binWidth, 20.0f, 20000.0f); // X-Koordinate basierend auf der Frequenz
+            float y = map(amplitude); // Y-Koordinate basierend auf der Amplitude
 
-//            jassert( !std::isnan(y) && !std::isinf(y) );
-
-            if( !std::isnan(y) && !std::isinf(y) )
+            if (!std::isnan(y) && !std::isinf(y))
             {
-                auto binFreq = binNum * binWidth;
-                auto normalizedBinX = juce::mapFromLog10(binFreq, 20.f, 20000.f);
-                int binX = std::floor(normalizedBinX * width);
-                p.lineTo(binX, y);
+                int binX = std::floor(x * width);
+                p.cubicTo(binX  , y -15, binX  , y, binX  , y );
+                //p.fillRect(juce::Colours::red);
             }
         }
 

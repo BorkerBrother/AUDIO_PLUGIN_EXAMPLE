@@ -78,9 +78,13 @@ void PathProducer::process(juce::Rectangle<float> fftBounds, double sampleRate) 
 
     const auto binWidth = sampleRate / (double)fftSize;
 
+
+
+
     while ( leftChannelFFTDataGenerator.getNumAvailableFFTDataBlocks() > 0 )
     {
         std::vector<float> fftData;
+
         if (leftChannelFFTDataGenerator.getFFTData(fftData))
         {
             pathProducer.generatePath(fftData,
@@ -88,7 +92,12 @@ void PathProducer::process(juce::Rectangle<float> fftBounds, double sampleRate) 
                                       fftSize,
                                       binWidth, -48.f);
 
+
+
+
         }
+
+
 
     }
 
@@ -219,22 +228,25 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         responseCurve.lineTo(responseArea.getX()+ i, map(mags[i]));
     }
 
+
+
     // DRAW FFT LEFT
 
     auto leftChannelFFTPath = leftPathProducer.getPath();
     leftChannelFFTPath.applyTransform(AffineTransform().translation(responseArea.getX(),
                                                                     responseArea.getY()));
 
+
     g.setColour(Colours::white);
-    g.strokePath(leftChannelFFTPath,PathStrokeType(1.f));
+
+
+    g.strokePath(leftChannelFFTPath,PathStrokeType(5, juce::PathStrokeType::curved));
+
 
     // DRAW FFT RIGHT
     auto rightChannelFFTPath = rightPathProducer.getPath();
     rightChannelFFTPath.applyTransform(AffineTransform().translation(responseArea.getX(),
                                                                     responseArea.getY()));
-
-    g.setColour(Colours::orange);
-    g.strokePath(rightChannelFFTPath,PathStrokeType(1.f));
 
 
     // GET MOUSE EVENTS
@@ -286,8 +298,13 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
 
     // DRAW RESPONSECURVE
+    g.setColour(Colours::orange);
+
+    //g.strokePath(rightChannelFFTPath,PathStrokeType(1.f));
+
 
     g.setColour(Colours::white);
+
     // Paint Path
     g.strokePath(responseCurve,PathStrokeType(2.f));
 
@@ -343,6 +360,14 @@ void ResponseCurveComponent::resized()
                     20000
             };
 
+    Array<float> freqsLines
+            {
+                    20, 30, 40, 50, 60,70,80,90 ,100,
+                    200, 300, 400, 500, 600,700,800,900 ,1000,
+                    2000, 3000,4000 , 5000,6000,7000,8000,9000,10000,
+                    20000
+            };
+
     auto renderArea = getAnalysisArea();
 
     auto left = getRenderArea().getX();
@@ -351,8 +376,15 @@ void ResponseCurveComponent::resized()
     auto bottom = renderArea.getBottom();
     auto width = renderArea.getWidth();
 
+    Array<float> xsLines;
+    for ( auto f : freqsLines )
+    {
+        auto normX = mapFromLog10(f,20.f,20000.f);
+        xsLines.add(left + width * normX);
+    }
+
     Array<float> xs;
-    for ( auto f : freqs )
+    for ( auto f : freqsLines )
     {
         auto normX = mapFromLog10(f,20.f,20000.f);
         xs.add(left + width * normX);
@@ -361,7 +393,7 @@ void ResponseCurveComponent::resized()
     g.setColour(Colours::dimgrey);
 
     // DRAW Vertical Lines
-    for ( auto x : xs)
+    for ( auto x : xsLines)
     {
         g.drawVerticalLine(x,top, bottom);
 
@@ -369,7 +401,7 @@ void ResponseCurveComponent::resized()
 
     Array<float> gain
             {
-                    -24, -12, 0, 12, 24
+                    -24,-18, -12, -6, 0, 6, 12, 18, 24
             };
 
 
@@ -393,9 +425,9 @@ void ResponseCurveComponent::resized()
     const int fontHeight = 10;
     g.setFont(fontHeight);
 
-    for ( int i = 0; i < freqs.size(); ++i)
+    for ( int i = 0; i < freqsLines.size(); i++)
     {
-        auto f = freqs[i];
+        auto f = freqsLines[i];
         auto x = xs[i];
 
         bool addK = false;
@@ -422,7 +454,7 @@ void ResponseCurveComponent::resized()
 
         g.drawFittedText(str,r,juce::Justification::centred,1);
 
-
+        i +=2;
     }
 
     // DRAW DB LINES String
@@ -449,6 +481,7 @@ void ResponseCurveComponent::resized()
 
         g.setColour(gDb == 0.f ? (Colours::orange) : Colours::lightgrey);
 
+
         g.drawFittedText(str,r,juce::Justification::centred,1);
 
         str.clear();
@@ -461,6 +494,7 @@ void ResponseCurveComponent::resized()
         g.setColour(Colours::lightgrey);
 
         g.drawFittedText(str,r,juce::Justification::centred,1);
+
 
     }
 
