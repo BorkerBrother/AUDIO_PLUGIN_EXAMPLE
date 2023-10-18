@@ -463,6 +463,15 @@ void ResponseCurveComponent::resized()
         g.drawFittedText(str,r,juce::Justification::centred,1);
 
     }
+
+    juce::Rectangle<float> sliderBackground;
+
+    sliderBackground.setBounds(225,390,350,170);
+
+
+    g.setColour(Colours::lightgrey);
+    g.fillRoundedRectangle(sliderBackground,10.f);
+
 }
 
 juce::Rectangle<int> ResponseCurveComponent::getRenderArea()

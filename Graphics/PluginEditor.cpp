@@ -63,6 +63,8 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g) {
 
     g.fillAll(Colours::black);
 
+
+
 }
 
 
@@ -71,7 +73,6 @@ void AudioPluginAudioProcessorEditor::resized()
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 
-    // TODO: Change rearange  rotary slider section Responsarea
 
     auto bounds = getLocalBounds();
     float hRatio = JUCE_LIVE_CONSTANT(100) / 100.f;
@@ -95,6 +96,9 @@ void AudioPluginAudioProcessorEditor::resized()
     peakGainSlider.setBounds(300,390,200,100);
     peakFreqSlider.setBounds(240,400,100,90);
     peakQualitySlider.setBounds(460,400,100,90);
+
+
+
     //peakQualitySlider.setBounds(bounds);
 }
 
