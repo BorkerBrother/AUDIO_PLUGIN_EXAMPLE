@@ -3,6 +3,7 @@
 //
 
 #include "ResponseCurveComponent.h"
+//#include "MouseEvent.h"
 
 //==============================================================================
 ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor &p, juce::MouseEvent mouseEvent)
@@ -301,7 +302,6 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
     //g.strokePath(rightChannelFFTPath,PathStrokeType(1.f));
 
-
     g.setColour(Colours::white);
 
     // Paint Path
@@ -312,6 +312,13 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         // DRAW POINT PEAK
         g.setColour(Colours::orange);
         pointArea.setBounds(umgewandelteWertX, umgewandelteWertY, 10, 10);
+
+        //auto localPoint = event.getMouseDownPosition();
+        auto wantToClickedX = pointArea.getX();
+        auto wantToClickedY = pointArea.getY();
+
+
+
         //pointArea.setBottom(getAnalysisArea().getBottom());
         //pointArea.setTop(getAnalysisArea().getY());
         g.drawRoundedRectangle(pointArea, 4.f, 1.f);

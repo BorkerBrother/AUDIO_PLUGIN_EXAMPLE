@@ -23,6 +23,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor(AudioPluginAudi
       lowCutSlopeSliderAttachment(processorRef.apvts, "LowCut Slope", lowCutSlopeSlider),
       highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSlider), mouseEvent(mouseEvent) {
 
+
+
     // LABELS
     peakFreqSlider.labels.add({0.f, "20Hz"});
     peakFreqSlider.labels.add({1.f, "20kHz"});
@@ -62,8 +64,6 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g) {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
 
     g.fillAll(Colours::black);
-
-
 
 }
 

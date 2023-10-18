@@ -5,9 +5,10 @@
 #ifndef AUDIO_PLUGIN_EXAMPLE_MOUSEEVENT_H
 #define AUDIO_PLUGIN_EXAMPLE_MOUSEEVENT_H
 
-#include <juce_audio_processors/juce_audio_processors.h>
+#include "../Processor/PluginProcessor.h"
+#include "ResponseCurveComponent.h"
 
-class MouseEvent  {
+class MouseEvent  : juce::Component{
 
 
 public:
@@ -23,8 +24,9 @@ public:
         return mouseY;
     }
 
+    void mouseDown (const juce::MouseEvent& event) override;
 
-    //AudioPluginAudioProcessor &processorRef;
+    AudioPluginAudioProcessor &processorRef;
 
 private:
     juce::Point<int> mousePos = juce::Desktop::getInstance().getMousePosition();
