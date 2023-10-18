@@ -273,7 +273,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
     // Zielbereich von 0 bis 100
     float minDBPixel = 20.0f;
-    float maxDBPixel = 145.0f;
+    float maxDBPixel = 480.0f;
 
     // Umwandlung der Herzfrequenz in den Bereich von 0-100
     float umgewandelteWertY = ((pointYTest - minDB) / (maxDB - minDB)) * (maxDBPixel - minDBPixel) + minDBPixel;
