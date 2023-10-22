@@ -6,10 +6,10 @@
 //#include "MouseEvent.h"
 
 //==============================================================================
-ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor &p, juce::MouseEvent mouseEvent)
+ResponseCurveComponent::ResponseCurveComponent(AudioPluginAudioProcessor &p, juce::MouseEvent &mouseEvent)
         : processorRef (p),
           leftPathProducer(processorRef.leftChannelFifo),
-          rightPathProducer(processorRef.rightChannelFifo), mouseEvent() {
+          rightPathProducer(processorRef.rightChannelFifo), mouseEvent(mouseEvent) {
     const auto& params = processorRef.getParameters();
     for ( auto param : params )
     {
@@ -309,18 +309,23 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
 
 
 
+    if(mouseEvent.getMouseDownPosition().getX())
+    {
+        g.setColour(Colours::orange);
+        pointArea.setBounds(mouseEvent.getMouseDownPosition().getX(), mouseEvent.getMouseDownPosition().getY(), 10, 10);
+        DBG(mouseEvent.getMouseDownPosition().getX());
+    }
+    else {
         // DRAW POINT PEAK
         g.setColour(Colours::orange);
         pointArea.setBounds(umgewandelteWertX, umgewandelteWertY, 10, 10);
+    }
 
-        //auto localPoint = event.getMouseDownPosition();
+    //auto localPoint = event.getMouseDownPosition();
         auto wantToClickedX = pointArea.getX();
         auto wantToClickedY = pointArea.getY();
 
 
-
-        //pointArea.setBottom(getAnalysisArea().getBottom());
-        //pointArea.setTop(getAnalysisArea().getY());
         g.drawRoundedRectangle(pointArea, 4.f, 1.f);
         g.fillRoundedRectangle(pointArea, 4.f);
         g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);

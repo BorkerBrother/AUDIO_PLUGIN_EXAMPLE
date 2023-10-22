@@ -34,6 +34,9 @@ struct ChainSettings
 
     Slope lowCutSlope {Slope::Slope_12}, highCutSlope {Slope::Slope_12};
 
+    bool lowCutBypassed { false}, peakBypassed { false }, highCutBypassed { false};
+
+
 };
 
 #endif //AUDIO_PLUGIN_EXAMPLE_SETTING_H
