@@ -24,11 +24,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="Create mousevent class for better Control - Issue">
+    <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" afterDir="false" />
@@ -104,11 +102,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.AudioPluginExample_VST3">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Unnamed" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory">
       <method v="2" />
     </configuration>
@@ -178,7 +171,8 @@
       <workItem from="1697559753101" duration="10962000" />
       <workItem from="1697583331979" duration="34362000" />
       <workItem from="1697890323804" duration="1377000" />
-      <workItem from="1697990645364" duration="3149000" />
+      <workItem from="1697990645364" duration="3810000" />
+      <workItem from="1697997814061" duration="1013000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -474,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697991972039</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="SIGSEV ERROR - ISSUE">
+      <created>1697997171192</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1697997171192</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,7 +493,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added basic slider Visuals - Fixed Issue" />
     <MESSAGE value="Sliders are now circles" />
     <MESSAGE value="Displaying Values" />
     <MESSAGE value="Implement Displaying Correct Value with suffix" />
@@ -517,7 +517,19 @@
     <MESSAGE value="Output Mouse Position" />
     <MESSAGE value="Create mousevent class for better Control - Issue" />
     <MESSAGE value="Implement Bypassed function in Processor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement Bypassed function in Processor" />
+    <MESSAGE value="SIGSEV ERROR - ISSUE" />
+    <option name="LAST_COMMIT_MESSAGE" value="SIGSEV ERROR - ISSUE" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Processor/PluginProcessor.cpp</url>
+          <line>359</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

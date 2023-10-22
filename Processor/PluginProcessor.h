@@ -2,11 +2,12 @@
 
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_dsp/juce_dsp.h>
+#include "Setting.h"
+#include "Fifo.h"
 #include "PeakFilter.h"
 #include "CutFilter.h"
-#include "Setting.h"
 #include "TemplateCoefficients.h"
-#include "Fifo.h"
+
 
 
 //==============================================================================

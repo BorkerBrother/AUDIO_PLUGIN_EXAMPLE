@@ -77,7 +77,7 @@ private:
 
     MonoChain monoChain;
 
-    //juce::Point<int> mousePos = juce::Desktop::getInstance().getMousePosition();
+    juce::Point<int> mousePos = juce::Desktop::getInstance().getMousePosition();
 
 
 

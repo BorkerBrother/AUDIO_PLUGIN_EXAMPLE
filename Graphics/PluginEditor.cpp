@@ -41,14 +41,14 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor(AudioPluginAudi
     //for (auto* comp : getComps())
     //{
     //    addAndMakeVisible(comp);
-    //    // TODO: Make Slope a ComboBox
+        // TODO: Make Slope a ComboBox
     //}
 
     addAndMakeVisible(responseCurveComponent);
     addAndMakeVisible(peakGainSlider);
     addAndMakeVisible(peakFreqSlider);
     addAndMakeVisible(peakQualitySlider);
-
+    addAndMakeVisible(peakBypassedButton);
 
 
     setSize (800, 500);
@@ -98,7 +98,7 @@ void AudioPluginAudioProcessorEditor::resized()
     peakFreqSlider.setBounds(240,400,100,90);
     peakQualitySlider.setBounds(460,400,100,90);
 
-    peakBypassedButton.setBounds(300,390,25,25);
+    peakBypassedButton.setBounds(240,390,25,25);
 
     //peakQualitySlider.setBounds(bounds);
 }

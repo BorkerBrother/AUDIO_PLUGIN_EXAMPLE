@@ -475,6 +475,7 @@ void ResponseCurveComponent::resized()
 
         g.setColour(gDb == 0.f ? (Colours::orange) : Colours::lightgrey);
 
+
         g.drawFittedText(str,r,juce::Justification::centred,1);
 
         str.clear();
