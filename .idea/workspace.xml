@@ -26,9 +26,13 @@
   <component name="ChangeListManager">
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="Create mousevent class for better Control - Issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/PluginProcessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PluginProcessor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Processor/Setting.h" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/Setting.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,6 +104,11 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.AudioPluginExample_VST3">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory">
       <method v="2" />
     </configuration>
@@ -169,7 +178,7 @@
       <workItem from="1697559753101" duration="10962000" />
       <workItem from="1697583331979" duration="34362000" />
       <workItem from="1697890323804" duration="1377000" />
-      <workItem from="1697990645364" duration="712000" />
+      <workItem from="1697990645364" duration="3149000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -458,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697641123149</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Implement Bypassed function in Processor">
+      <created>1697991972039</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1697991972039</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +492,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Draw Buttons : Issue - draw Angle Lines" />
     <MESSAGE value="Added basic slider Visuals - Fixed Issue" />
     <MESSAGE value="Sliders are now circles" />
     <MESSAGE value="Displaying Values" />
@@ -501,7 +516,8 @@
     <MESSAGE value="Draw Curved Analyzer" />
     <MESSAGE value="Output Mouse Position" />
     <MESSAGE value="Create mousevent class for better Control - Issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create mousevent class for better Control - Issue" />
+    <MESSAGE value="Implement Bypassed function in Processor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement Bypassed function in Processor" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

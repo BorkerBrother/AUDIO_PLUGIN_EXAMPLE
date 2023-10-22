@@ -1,9 +1,5 @@
 //
 // Created by Kai on 15.10.23.
-//
-
-
-
 
 #include "../Processor/PluginProcessor.h"
 #include "FFT.h"
@@ -34,12 +30,10 @@ private:
     SingleChannelSampleFifo<AudioPluginAudioProcessor::BlockType>*  leftChannelFifo;
 
     // FFT
-
     FFTDataGenerator<std::vector<float>> leftChannelFFTDataGenerator;
-
     AnalyzerPathGenerator<juce::Path> pathProducer;
-
     juce::Path leftChannelFFTPath;
+
 
 };
 
@@ -51,20 +45,22 @@ struct ResponseCurveComponent: juce::Component,
                                juce::Timer
 
 {
-    ResponseCurveComponent(AudioPluginAudioProcessor &, juce::MouseEvent mouseEvent);
+    ResponseCurveComponent(AudioPluginAudioProcessor &, juce::MouseEvent &mouseEvent);
     ~ResponseCurveComponent() ;
 
     void parameterValueChanged (int parameterIndex, float newValue) override ;
     void parameterGestureChanged (int parameterIndex, bool gestureIsStarting) override { }
     void timerCallback() override;
-    void paint(juce::Graphics& g)  ;
+    void paint(juce::Graphics& g) override;
     void resized() override;
+
 
     juce::Rectangle<int> getRenderArea();
 
     juce::Rectangle<int> getAnalysisArea();
 
 
+    juce::MouseEvent mouseEvent;
 
 private:
 
@@ -81,15 +77,16 @@ private:
 
     MonoChain monoChain;
 
+    //juce::Point<int> mousePos = juce::Desktop::getInstance().getMousePosition();
 
-    //juce::MouseEvent mouseEvent;
+
 
     juce::Image background;
 
     // ANALYZER
     PathProducer leftPathProducer, rightPathProducer;
 
-    int mouseEvent;
+    //int mouseEvent;
 };
 
 

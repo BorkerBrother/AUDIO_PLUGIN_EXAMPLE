@@ -331,7 +331,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g) {
         g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
 
         // DRAW LOWCUT POINT
-        pointAreaLow.setBounds(umgewandelteWertXLow, getRenderArea().getCentreY(), 10, 10);
+        //pointAreaLow.setBounds(umgewandelteWertXLow, getRenderArea().getCentreY(), 10, 10);
         g.drawRoundedRectangle(pointAreaLow, 4.f, 1.f);
         g.fillRoundedRectangle(pointAreaLow, 4.f);
         g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
@@ -474,7 +474,6 @@ void ResponseCurveComponent::resized()
         r.setCentre(r.getCentreX(), y);
 
         g.setColour(gDb == 0.f ? (Colours::orange) : Colours::lightgrey);
-
 
         g.drawFittedText(str,r,juce::Justification::centred,1);
 

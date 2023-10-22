@@ -47,6 +47,11 @@ private:
             lowCutSlopeSliderAttachment,
             highCutSlopeSliderAttachment;
 
+    juce::ToggleButton  lowcutBypasseButton,
+                        highcutBypassButton,
+                        peakBypassedButton,
+                        analyzerEnableButton;
+
 
     // VECTOR FOR SLIDERS
     std::vector<juce::Component*> getComps();

@@ -104,10 +104,10 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     rightChannelFifo.prepare(samplesPerBlock);
 
     // OSC TEST
-    osc.initialise([] (float x) { return std::sin(x); } );
-    spec.numChannels = getTotalNumOutputChannels();
-    osc.prepare(spec);
-    osc.setFrequency(100);
+    //osc.initialise([] (float x) { return std::sin(x); } );
+    //spec.numChannels = getTotalNumOutputChannels();
+    //osc.prepare(spec);
+    //osc.setFrequency(100);
 
 
 }
@@ -170,9 +170,9 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     juce::dsp::AudioBlock<float> block(buffer);                                             // Initalise Buffer
 
     // OSC TEST
-    buffer.clear();
-    juce::dsp::ProcessContextReplacing<float> stereoContext(block);
-    osc.process(stereoContext);
+    //buffer.clear();
+    //juce::dsp::ProcessContextReplacing<float> stereoContext(block);
+    //osc.process(stereoContext);
 
     auto leftBlock = block.getSingleChannelBlock(0);                    // get audioblock from buffer left
     auto rightBlock = block.getSingleChannelBlock(1);                   // get audioblock from buffer right

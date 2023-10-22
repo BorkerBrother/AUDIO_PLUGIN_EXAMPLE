@@ -50,6 +50,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor(AudioPluginAudi
     addAndMakeVisible(peakQualitySlider);
 
 
+
     setSize (800, 500);
 }
 
@@ -82,8 +83,8 @@ void AudioPluginAudioProcessorEditor::resized()
 
     //auto newBounds = setBounds(400,500,100,30);
 
-    auto lowCutArea = bounds.removeFromLeft(bounds.getWidth() * 0.33);
-    auto highCutArea = bounds.removeFromRight(bounds.getWidth() *0.5);
+    //auto lowCutArea = bounds.removeFromLeft(bounds.getWidth() * 0.33);
+    //auto highCutArea = bounds.removeFromRight(bounds.getWidth() *0.5);
 
     //lowCutFreqSlider.setBounds(lowCutArea.removeFromTop((lowCutArea.getHeight() * 0.5)));
     //lowCutSlopeSlider.setBounds(lowCutArea);
@@ -97,7 +98,7 @@ void AudioPluginAudioProcessorEditor::resized()
     peakFreqSlider.setBounds(240,400,100,90);
     peakQualitySlider.setBounds(460,400,100,90);
 
-
+    peakBypassedButton.setBounds(300,390,25,25);
 
     //peakQualitySlider.setBounds(bounds);
 }
@@ -117,6 +118,11 @@ std::vector<juce::Component*> AudioPluginAudioProcessorEditor::getComps()
         &highCutFreqSlider,
         &lowCutSlopeSlider,
         &highCutSlopeSlider,
-        &responseCurveComponent
+        &responseCurveComponent,
+
+        &lowcutBypasseButton,
+        &highcutBypassButton,
+        &peakBypassedButton,
+        &analyzerEnableButton
     };
 }
