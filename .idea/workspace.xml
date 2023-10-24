@@ -25,9 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1db335ea-b907-4e22-b938-f53578486764" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphics/PluginEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/PluginEditor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics/ResponseCurveComponent.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +168,7 @@
       <workItem from="1697990645364" duration="3810000" />
       <workItem from="1697997814061" duration="1013000" />
       <workItem from="1697998972858" duration="921000" />
-      <workItem from="1698145181718" duration="965000" />
+      <workItem from="1698145181718" duration="1273000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696930834672</created>
@@ -480,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697999226411</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Addinf attachment tobuttons">
+      <created>1698146162721</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1698146162721</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Displaying Values" />
     <MESSAGE value="Implement Displaying Correct Value with suffix" />
     <MESSAGE value="Update Visuals" />
     <MESSAGE value="Added Grid Lines" />
@@ -523,7 +527,8 @@
     <MESSAGE value="Implement Bypassed function in Processor" />
     <MESSAGE value="SIGSEV ERROR - ISSUE" />
     <MESSAGE value="Fixed Issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Issue" />
+    <MESSAGE value="Addinf attachment tobuttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Addinf attachment tobuttons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
