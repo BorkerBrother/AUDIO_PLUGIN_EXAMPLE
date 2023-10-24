@@ -21,7 +21,16 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor(AudioPluginAudi
       lowCutFreqSliderAttachment(processorRef.apvts, "LowCut Freq", lowCutFreqSlider),
       highCutFreqSliderAttachment(processorRef.apvts, "HighCut Freq", highCutFreqSlider),
       lowCutSlopeSliderAttachment(processorRef.apvts, "LowCut Slope", lowCutSlopeSlider),
-      highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSlider), mouseEvent(mouseEvent) {
+      highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSlider),
+      mouseEvent(mouseEvent) ,
+
+      peakBypassedButtonAttachment(processorRef.apvts, "Peak Bypassed", peakBypassedButton),
+      lowcutBypasseButtonAttachment(processorRef.apvts, "LowCut Bypassed", lowcutBypasseButton),
+      highcutBypassButtonAttachment(processorRef.apvts, "HighCut Bypassed", highcutBypassButton),
+      analyzerEnableButtonAttachment(processorRef.apvts, "Analyzer Enabled", analyzerEnableButton)
+
+      {
+
 
 
 

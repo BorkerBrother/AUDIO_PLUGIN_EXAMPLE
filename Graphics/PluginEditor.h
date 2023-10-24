@@ -52,6 +52,12 @@ private:
                         peakBypassedButton,
                         analyzerEnableButton;
 
+    using ButtonAttachment = APVTS::ButtonAttachment;
+
+    ButtonAttachment    lowcutBypasseButtonAttachment,
+                        highcutBypassButtonAttachment,
+                        peakBypassedButtonAttachment,
+                        analyzerEnableButtonAttachment;
 
     // VECTOR FOR SLIDERS
     std::vector<juce::Component*> getComps();
